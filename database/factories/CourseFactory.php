@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "title" => fake()->sentence(),
+            "description" => fake()->paragraph(),
+            "user_id" => rand(2, User::all()->count()),
+            "price" => fake()->randomNumber(5, true),
         ];
     }
 }
