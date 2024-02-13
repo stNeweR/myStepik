@@ -13,10 +13,4 @@
         <p><b>Is bunned:</b> {{ $user->deleted_at}}</p>
     @endif
 
-
-
-
-
-
-
 @endsection

@@ -1,4 +1,4 @@
-<aside class="flex w-1/5 bg-slate-800 text-slate-200">
+<aside class="flex w-1/5 bg-slate-800  text-slate-200">
     <div class="w-full mx-3 mt-2">
         <h1 class="text-xl font-semibold">MENU</h1>
         <nav class="flex flex-col gap-2 mt-2">

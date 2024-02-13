@@ -7,17 +7,15 @@
     @vite("resources/css/app.css")
     <title>Admin panel</title>
 </head>
-<body class="h-full">
+<body class="h-full text-white">
     <x-header></x-header>
 
-    <div class="flex mt-14 bg-slate-100">
+    <div class="flex mt-14 bg-slate-900 h-full">
         <x-sidebar></x-sidebar>
-        <div class="flex-1 mx-4 mt-2 flex flex-col">
-            <main class="flex-1 min-h-screen">
-                @yield("page")
-            </main>
+        <main class="flex flex-col flex-1">
+            @yield("page")
             <x-footer></x-footer>
-        </div>
+        </main>
     </div>
 </body>
 </html>

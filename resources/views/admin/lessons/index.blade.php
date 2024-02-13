@@ -1,5 +1,7 @@
 @extends("admin.layout.main")
 
 @section("page")
-    <h1>Lessons!!</h1>
+    <x-container>
+        <h1>Lessons!!</h1>
+    </x-container>
 @endsection

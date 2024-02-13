@@ -1,3 +1,3 @@
-<div class="w-full  my-2 font-semibold">
+<div class="w-full text-center  my-4 font-semibold">
     Приложение написано на laravel и vue js &copy;
 </div>

@@ -15,14 +15,17 @@ Route::as("admin.")->group(function () {
     Route::as("users.")->prefix("users")->group(function () {
         Route::get("", [UserController::class, "index"])->name("index");
         Route::get("/{id}", [UserController::class, "show"])->name("show");
+        Route::post("/find", [UserController::class, "find"])->name("find");
         Route::post("/{id}/restore", [UserController::class, "restore"])->name("restore");
         Route::delete("/{id}/delete", [UserController::class, "delete"])->name("delete");
     });
     Route::as("courses.")->prefix("courses")->group(function () {
         Route::get("", [CourseController::class, "index"])->name("index");
+        Route::get("/{id}", [CourseController::class, "show"])->name("show");
     });
     Route::as("lessons.")->prefix("lessons")->group(function () {
         Route::get("", [LessonController::class, "index"])->name("index");
+        Route::get("/{id}", [LessonController::class, "show"])->name("show");
     });
 
 });
