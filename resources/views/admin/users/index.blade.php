@@ -3,7 +3,7 @@
 @section("page")
 <x-container class="">
     <div class="grid grid-cols-2 gap-4">
-        <div class="bg-slate-800 rounded px-2 py-2">
+        <x-block>
             <form action="{{ route("admin.users.find")}}"  method="post" class="flex flex-col gap-3 mb-2">
                 @csrf
                 @method("post")
@@ -24,15 +24,15 @@
                 <input type="text" name="body" id="body" class="bg-slate-600 py-1 px-2 rounded outline-none">
                 <button class="bg-purple-600 py-1 rounded" type="submit">Find!</button>
             </form>
-        </div>
-        <div class="bg-slate-800 rounded px-2 py-2">
+        </x-block>
+        <x-block>
             <h1 class="text-xl">Количество пользователей:</h1>
             <p>{{ $usersCount }}</p>
             <h1 class="text-xl">Новых пользователей за неделю:</h1>
             <p>{{ $usersCount }}</p>
-        </div>
+        </x-block>
     </div>
-    <div class="bg-slate-800 rounded px-2 py-2 my-4">
+    <x-block class="my-4">
         <table class="w-full text-left mb-2">
             <thead class=""">
                 <tr class="border-b border-slate-600 ">
@@ -74,6 +74,6 @@
             </tbody>
         </table>
         {{ $users->links() }}
-    </div>
+    </x-block>
 </x-container>
 @endsection

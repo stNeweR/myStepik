@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFindRequest;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -11,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::withTrashed()->orderBy("created_at", "desc")->paginate(10);
+        $users = User::withTrashed()->orderBy("created_at", "desc")->paginate(3);
         $usersCount = User::query()->count();
         return view("admin.users.index", [
             "users" => $users,
@@ -22,8 +23,12 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::withTrashed()->findOrFail($id);
+        $myCourses = $user->myCourses;
+        // dd($myCourses["title"]);
         return view("admin.users.show", [
             "user" => $user,
+            "myCourses" => $myCourses,
+            "courses" => $user->courses
         ]
     );
     }
@@ -31,7 +36,6 @@ class UserController extends Controller
     public function find(UserFindRequest $request)
     {
         $data = $request->validated();
-        // dump($request->validated());
         $query = User::withTrashed()->where($data["field"], "LIKE", "%" . $data["body"] . "%");
         $usersCount = User::query()->count();
         if ($data["deleted"] === "true") {
@@ -46,6 +50,27 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $user = User::query()->findOrFail($id);
+        return view("admin.users.edit", [
+            "user" => $user
+        ]);
+    }
+
+    public function update($id, UserRequest $request)
+    {
+        $data = $request->validated();
+        $user = User::query()->findOrFail($id);
+        $user->update([
+            "user_name" => $data["user_name"],
+            "first_name" => $data["first_name"],
+            "last_name" => $data["last_name"],
+            "email" => $data["email"],
+            "password" => $data["password"],
+        ]);
+        return redirect()->route("admin.users.show", $id);
+    }
 
     public function delete($id)
     {

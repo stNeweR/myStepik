@@ -6,7 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Course;
 use App\Models\CourseUser;
-use App\Models\Lessons;
+use App\Models\Lesson;
 use App\Models\Option;
 use App\Models\Survey;
 use Illuminate\Database\Seeder;
@@ -25,11 +25,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'shyguy096com@gmail.com',
         // ]);
         // \App\Models\User::factory(20)->create();
-        // Course::factory(10)->create();
-        // Lesson::factory(50)->create();
-        // CourseUser::factory(40)->create();
-        // Survey::factory(20)->create();
-        Option::factory(80)->create();
+        // Course::factory(20)->create();
+        // Lesson::factory(120)->create();
+        // CourseUser::factory(20)->create();
+        // Survey::factory(50)->create();
+        // Option::factory(80)->create();
 
 
     }

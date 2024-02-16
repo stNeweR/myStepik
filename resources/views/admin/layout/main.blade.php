@@ -7,7 +7,7 @@
     @vite("resources/css/app.css")
     <title>Admin panel</title>
 </head>
-<body class="h-full text-white">
+<body class="h-screen text-white">
     <x-header></x-header>
 
     <div class="flex mt-14 bg-slate-900 h-full">
