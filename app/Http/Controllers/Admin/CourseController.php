@@ -25,6 +25,8 @@ class CourseController extends Controller
         $course = Course::query()->findOrFail($id);
 
         return view("admin.courses.show", [
+            "auther" => $course->user,
+            "course" => $course,
             "lessons" => $course->lessons,
         ]);
     }

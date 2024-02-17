@@ -25,6 +25,9 @@ Route::as("admin.")->group(function () {
         Route::get("", [CourseController::class, "index"])->name("index");
         Route::get("/{id}", [CourseController::class, "show"])->name("show");
         Route::post("/find", [CourseController::class, "find"])->name("find");
+        Route::get("/{id}/edit", [CourseController::class, "edit"])->name("edit");
+        Route::put("/{id}", [CourseController::class, "update"])->name("update");
+        Route::delete("/{id}/delete", [CourseController::class, "delete"])->name("delete");
     });
     Route::as("lessons.")->prefix("lessons")->group(function () {
         Route::get("", [LessonController::class, "index"])->name("index");

@@ -20,7 +20,7 @@ class OptionFactory extends Factory
         return [
             "body" => fake()->sentence(),
             "is_correct" => fake()->boolean(),
-            "survey_id" => rand(1, rand(1, Survey::query()->count())),
+            "survey_id" => rand(1, Survey::query()->count()),
         ];
     }
 }

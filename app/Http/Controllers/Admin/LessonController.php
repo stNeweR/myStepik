@@ -17,8 +17,11 @@ class LessonController extends Controller
     public function show($id)
     {
         $lesson = Lesson::query()->findOrFail($id);
-        dump($lesson->surveys[0]->options);
-
+        $surveys = $lesson->surveys;
+        return view("admin.lessons.show", [
+            "lesson" => $lesson,
+            "surveys" => $surveys
+        ]);
     }
 
 }

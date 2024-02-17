@@ -32,7 +32,7 @@
             <p>{{ $usersCount }}</p>
         </x-block>
     </div>
-    <x-block class="my-4">
+    <x-block>
         <table class="w-full text-left mb-2">
             <thead class=""">
                 <tr class="border-b border-slate-600 ">
