@@ -6,7 +6,6 @@ use App\Http\Controllers\Api\SurveyController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Framework\Attributes\Group;
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

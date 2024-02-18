@@ -33,13 +33,31 @@
                 <tr>
                     <th>Title</th>
                     <th>See more</th>
+                    <th>Users</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($courses as $course)
                     <tr>
                         <td>{{ $course->title }}</td>
-                        <td><a href="{{ route("admin.courses.show", $course->id)}}">Seee</a></td>
+                        <td><x-link href="{{ route('admin.courses.show', $course->id)}}">Seee</x-link></td>
+                        <td>{{ $course->users->count()}}</td>
+                        <td>
+                            @if ($course->deleted_at === Null)
+                                <form action="{{ route("admin.courses.delete", $course->id)}}" method="POST">
+                                    @method("delete")
+                                    @csrf()
+                                    <button class="bg-red-500 py-1 px-2 rounded">Delete!</button>
+                                </form>
+                            @else
+                                <form action="{{ route("admin.courses.restore", $course->id)}}" method="POST">
+                                    @csrf()
+                                    @method("post")
+                                    <button class="bg-green-500 py-1 px-2 rounded">{{ date("Y-m-d", strtotime($course->deleted_at)) }} <br> Restore</button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -24,7 +24,6 @@ class UserController extends Controller
     {
         $user = User::withTrashed()->findOrFail($id);
         $myCourses = $user->myCourses;
-        // dd($myCourses["title"]);
         return view("admin.users.show", [
             "user" => $user,
             "myCourses" => $myCourses,
@@ -74,7 +73,7 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        User::query()->find($id)->delete();
+        User::query()->findOrFail($id)->delete();
         return redirect()->back();
     }
 

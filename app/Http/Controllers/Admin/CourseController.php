@@ -12,7 +12,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::query()->paginate(5);
+        $courses = Course::withTrashed()->paginate(10);
         $coursesCount = Course::query()->count();
         return view("admin.courses.index", [
             "courses" => $courses,
@@ -22,12 +22,13 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        $course = Course::query()->findOrFail($id);
-
+        $course = Course::withTrashed()->findOrFail($id);
+        $users = $course->users;
         return view("admin.courses.show", [
             "auther" => $course->user,
             "course" => $course,
             "lessons" => $course->lessons,
+            "users" => $users,
         ]);
     }
 
@@ -35,5 +36,22 @@ class CourseController extends Controller
     {
         $findCourses = Course::query()->where($request->field, "LIKE", "%" . $request->body . "%")->get();
         dd($findCourses);
+    }
+
+    public function edit()
+    {
+        
+    }
+
+    public function delete($id)
+    {
+        Course::query()->findOrFail($id)->delete();
+        return redirect()->back();
+    }
+
+    public function restore($id)
+    {
+        Course::onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back();
     }
 }
