@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\User;
@@ -25,7 +26,7 @@ class CourseController extends Controller
         $course = Course::withTrashed()->findOrFail($id);
         $users = $course->users;
         return view("admin.courses.show", [
-            "auther" => $course->user,
+            "author" => $course->user,
             "course" => $course,
             "lessons" => $course->lessons,
             "users" => $users,
@@ -38,9 +39,25 @@ class CourseController extends Controller
         dd($findCourses);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        
+        $course = Course::withTrashed()->findOrFail($id);
+        return view("admin.courses.edit", [
+            "course" => $course,
+
+        ]);
+    }
+
+    public function update($id, CourseRequest $request)
+    {
+        $course = Course::withTrashed()->findOrFail($id);
+        $data = $request->validated();
+        $course->update([
+            "title" => $data["title"],
+            "desription" => $data["description"],
+            "price" => $data["price"],
+        ]);
+        return redirect()->route("admin.courses.show", $id);
     }
 
     public function delete($id)

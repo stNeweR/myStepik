@@ -60,7 +60,7 @@ class UserController extends Controller
     public function update($id, UserRequest $request)
     {
         $data = $request->validated();
-        $user = User::query()->findOrFail($id);
+        $user = User::withTrashed()->findOrFail($id);
         $user->update([
             "user_name" => $data["user_name"],
             "first_name" => $data["first_name"],

@@ -5,7 +5,7 @@
         <x-block>
             <h1><b>Title: </b>{{ $course->title}}</h1>
             <p><b>Description: </b>{{ $course->description }}</p>
-            <p><b>Auther: </b>{{ $auther->user_name }}</p>
+            <p><b>Author: </b>{{ $author->user_name }}</p>
             <x-link href="{{ route('admin.courses.edit', $course->id)}}">Edit!</x-link>
         </x-block>
         <x-block>

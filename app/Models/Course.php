@@ -10,6 +10,10 @@ class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        "title", "description", "price"
+    ];
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
