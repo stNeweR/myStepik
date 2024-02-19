@@ -18,7 +18,7 @@
                 </form>
             </x-block>
             <x-block>
-                <h1 class="text-xl">Количество уроков:</h1>
+                <h1 class="text-xl">Количество курсов:</h1>
             </x-block>
         </div>
         <x-block>
@@ -27,32 +27,36 @@
                     <tr>
                         <th>Title</th>
                         <th>See more</th>
+                        <th>Users</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($lessons as $lesson)
+                    @foreach ($courses as $course)
                         <tr class="border-t border-slate-600">
-                            <td class="py-2">{{ $lesson->title }}</td>
-                            <td><x-link href="{{ route('admin.courses.show', $lesson->id)}}">Seee</x-link></td>
+                            <td class="py-2">{{ $course->title }}</td>
+                            <td><x-link href="{{ route('admin.courses.show', $course->id)}}">Seee</x-link></td>
+                            <td>{{ $course->users->count()}}</td>
                             <td>
-                                @if ($lesson->deleted_at === Null)
-                                    <form action="{{ route("admin.courses.delete", $lesson->id)}}" method="POST">
+                                @if ($course->deleted_at === Null)
+                                    <form action="{{ route("admin.courses.delete", $course->id)}}" method="POST">
                                         @method("delete")
                                         @csrf()
                                         <button class="bg-red-500 py-1 px-2 rounded">Delete!</button>
                                     </form>
                                 @else
-                                    <form action="{{ route("admin.courses.restore", $lesson->id)}}" method="POST">
+                                    <form action="{{ route("admin.courses.restore", $course->id)}}" method="POST">
                                         @csrf()
                                         @method("post")
-                                        <button class="bg-green-500 py-1 px-2 rounded">{{ date("Y-m-d", strtotime($lesson->deleted_at)) }} <br> Restore</button>
+                                        <button class="bg-green-500 py-1 px-2 rounded">{{ date("Y-m-d", strtotime($course->deleted_at)) }} <br> Restore</button>
                                     </form>
                                 @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+            </table>
+
         </x-block>
     </x-container>
 @endsection

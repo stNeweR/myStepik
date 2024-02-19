@@ -13,7 +13,7 @@
                         <option value="false">No</option>
                     </select>
                     <label for="searchTerm">Поиск по заголовку:</label>
-                    <input type="text" name="searchTerm" id="searchTerm" class="bg-slate-600 py-1 px-2 rounded outline-none">
+                    <input type="text" name="searchTerm" id="searchTerm" class="border-b bg-transparent outline-none">
                     <button class="bg-purple-600 py-1 rounded" type="submit">Search!</button>
                 </form>
             </x-block>
@@ -42,7 +42,6 @@
                                 @else
                                     <h1>No</h1>
                                 @endif
-                                {{-- {{ $lesson->surveys}} --}}
                             </td>
                             <td>
                                 @if ($lesson->deleted_at === Null)
@@ -55,7 +54,7 @@
                                     <form action="{{ route("admin.lessons.restore", $lesson->id)}}" method="POST">
                                         @csrf()
                                         @method("post")
-                                        <button class="bg-green-500 py-1 px-2 rounded">{{ date("Y-m-d", strtotime($user->deleted_at)) }} <br> Restore</button>
+                                        <button class="bg-green-500 py-1 px-2 rounded">{{ date("Y-m-d", strtotime($lesson->deleted_at)) }} <br> Restore</button>
                                     </form>
                                 @endif
                             </td>

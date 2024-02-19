@@ -43,4 +43,16 @@ class LessonController extends Controller
             "lessons" => $lessons,
         ]);
     }
+
+    public function delete($id)
+    {
+        Lesson::query()->findOrFail($id)->delete();
+        return redirect()->route("admin.lessons.index");
+    }
+
+    public function restore($id)
+    {
+        Lesson::withTrashed()->findOrFail($id)->restore();
+        return redirect()->route("admin.lessons.index");
+    }
 }

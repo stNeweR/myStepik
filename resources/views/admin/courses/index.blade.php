@@ -14,7 +14,7 @@
                 </select>
                 <label for="searchTerm">Поиск по заголовку</label>
                 <input type="text" class="border-b bg-transparent outline-none" name="searchTerm">
-                <button type="submit">Find!</button>
+                <button type="submit" class="bg-purple-600 py-1 rounded">Search!</button>
             </form>
         </x-block>
         <x-block>

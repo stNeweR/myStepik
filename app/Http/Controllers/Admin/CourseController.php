@@ -14,7 +14,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::withTrashed()->paginate(10);
-        $coursesCount = Course::query()->count();
+        $coursesCount = Course::withTrashed()->count();
         return view("admin.courses.index", [
             "courses" => $courses,
             "coursesCount" => $coursesCount,
@@ -43,7 +43,7 @@ class CourseController extends Controller
             $query->whereNull("deleted_at");
         }
         $courses = $query->get();
-        return view('admin.courses.find', ["courses" => $courses]);
+        return view('admin.courses.search', ["courses" => $courses]);
     }
 
     public function edit($id)

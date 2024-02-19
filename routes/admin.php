@@ -34,7 +34,8 @@ Route::as("admin.")->group(function () {
         Route::get("", [LessonController::class, "index"])->name("index");
         Route::get("/{id}", [LessonController::class, "show"])->name("show");
         Route::post("/search", [LessonController::class, "search"])->name("search");
-        Route::delete("/{id}/delete", [LessonController::class, "delte"])->name("delete");
+        Route::delete("/{id}/delete", [LessonController::class, "delete"])->name("delete");
+        Route::post("/{id}/restore", [LessonController::class, "restore"])->name("restore");
     });
 
 });
