@@ -13,7 +13,7 @@
                     <label for="price" class="font-bold">Price:</label>
                     <input class="bg-transparent border-b outline-none"  type="number" name="price" value="{{ $course->price }}">
                     <label for="description" class="font-bold">Description:</label>
-                    <textarea type="text" class="bg-transparent border outline-none" rows=10 name="description">{{ $course->description}}</textarea>
+                    <textarea type="text" class="bg-transparent border outline-none p-2 rounded mb-2" rows=10 name="description">{{ $course->description}}</textarea>
                 </div>
                 <button type="submit">Edit!</button>
             </form>

@@ -34,7 +34,7 @@
     </div>
     <x-block>
         <table class="w-full text-left mb-2">
-            <thead class=""">
+            <thead class="">
                 <tr class="border-b border-slate-600 ">
                     <th class="py-1" scope="col">USER_NAME</th>
                     <th scope="col">NAME</th>

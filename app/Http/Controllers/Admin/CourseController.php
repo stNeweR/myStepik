@@ -33,10 +33,17 @@ class CourseController extends Controller
         ]);
     }
 
-    public function find(Request $request)
+    public function search(Request $request)
     {
-        $findCourses = Course::query()->where($request->field, "LIKE", "%" . $request->body . "%")->get();
-        dd($findCourses);
+        $search = $request["searchTerm"];
+        $query = Course::withTrashed()->where("title", "LIKE", "%" . $search . "%");
+        if ($request["deleted"] === "true") {
+            $query->whereNotNull("deleted_at");
+        } elseif ($request["deleted"] === "false") {
+            $query->whereNull("deleted_at");
+        }
+        $courses = $query->get();
+        return view('admin.courses.find', ["courses" => $courses]);
     }
 
     public function edit($id)
@@ -44,7 +51,6 @@ class CourseController extends Controller
         $course = Course::withTrashed()->findOrFail($id);
         return view("admin.courses.edit", [
             "course" => $course,
-
         ]);
     }
 

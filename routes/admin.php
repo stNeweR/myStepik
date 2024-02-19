@@ -24,8 +24,8 @@ Route::as("admin.")->group(function () {
     Route::as("courses.")->prefix("courses")->group(function () {
         Route::get("", [CourseController::class, "index"])->name("index");
         Route::get("/{id}", [CourseController::class, "show"])->name("show");
-        Route::post("/find", [CourseController::class, "find"])->name("find");
         Route::get("/{id}/edit", [CourseController::class, "edit"])->name("edit");
+        Route::post("/search", [CourseController::class, "search"])->name("search");
         Route::put("/{id}", [CourseController::class, "update"])->name("update");
         Route::delete("/{id}/delete", [CourseController::class, "delete"])->name("delete");
         Route::post("/{id}/restore", [CourseController::class, "restore"])->name("restore");
@@ -33,6 +33,8 @@ Route::as("admin.")->group(function () {
     Route::as("lessons.")->prefix("lessons")->group(function () {
         Route::get("", [LessonController::class, "index"])->name("index");
         Route::get("/{id}", [LessonController::class, "show"])->name("show");
+        Route::post("/search", [LessonController::class, "search"])->name("search");
+        Route::delete("/{id}/delete", [LessonController::class, "delte"])->name("delete");
     });
 
 });
