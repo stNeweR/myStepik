@@ -18,18 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory()->create([
-        //     'user_name' => 'stNeweR',
-        //     "first_name" => "Egor",
-        //     "last_name" => "Sarafannikov",
-        //     'email' => 'shyguy096com@gmail.com',
-        // ]);
-        // \App\Models\User::factory(20)->create();
-        // Course::factory(20)->create();
-        // Lesson::factory(120)->create();
-        // CourseUser::factory(20)->create();
-        // Survey::factory(50)->create();
-        // Option::factory(80)->create();
+//         \App\Models\User::factory()->create([
+//             'user_name' => 'stNeweR',
+//             "first_name" => "Egor",
+//             "last_name" => "Sarafannikov",
+//             'email' => 'shyguy096com@gmail.com',
+//         ]);
+//         \App\Models\User::factory(40)->create();
+//         Course::factory(30)->create();
+//         Lesson::factory(180)->create();
+//         CourseUser::factory(40)->create();
+//         Survey::factory(100)->create();
+         Option::factory(300)->create();
 
 
     }

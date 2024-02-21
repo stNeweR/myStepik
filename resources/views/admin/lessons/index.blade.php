@@ -25,6 +25,7 @@
             <table class="w-full">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Title</th>
                         <th>Course_id</th>
                         <th>Question</th>
@@ -34,6 +35,7 @@
                 <tbody>
                     @foreach ($lessons as $lesson)
                         <tr class="border-t border-slate-600">
+                            <td>{{ $lesson->id }}</td>
                             <td class="py-2">{{ $lesson->title}}</td>
                             <td>{{ $lesson->course_id}}</td>
                             <td>

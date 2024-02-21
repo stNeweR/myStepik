@@ -36,6 +36,7 @@
         <table class="w-full text-left mb-2">
             <thead class="">
                 <tr class="border-b border-slate-600 ">
+                    <th>Id</th>
                     <th class="py-1" scope="col">USER_NAME</th>
                     <th scope="col">NAME</th>
                     <th scope="col">EMAIL</th>
@@ -47,6 +48,7 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr scope="row" class="border-t border-slate-600">
+                        <td>{{ $user->id }}</td>
                         <td class="py-2">{{ $user->user_name }}</td>
                         <td class="">{{ $user->first_name }} {{ $user->last_name }}</td>
                         <td class="">{{ $user->email }}</td>

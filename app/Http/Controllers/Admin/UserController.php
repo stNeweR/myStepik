@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::withTrashed()->orderBy("created_at", "desc")->paginate(3);
+        $users = User::withTrashed()->orderBy("created_at", "desc")->paginate(10);
         $usersCount = User::query()->count();
         return view("admin.users.index", [
             "users" => $users,

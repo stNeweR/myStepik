@@ -26,6 +26,7 @@
         <table class="w-full">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Title</th>
                     <th>See more</th>
                     <th>Users</th>
@@ -35,6 +36,7 @@
             <tbody>
                 @foreach ($courses as $course)
                     <tr class="border-t border-slate-600">
+                        <td>{{ $course->id }}</td>
                         <td class="py-2">{{ $course->title }}</td>
                         <td><x-link href="{{ route('admin.courses.show', $course->id)}}">Seee</x-link></td>
                         <td>{{ $course->users->count()}}</td>

@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string("body");
             $table->boolean("is_correct");
-            $table->foreignId("survey_id")->constrained();
+            $table->foreignId("survey_id")->constrained()->onDelete("cascade");
 
             $table->timestamps();
         });

@@ -13,8 +13,8 @@ return new class extends Migration
 
             $table->string("title");
             $table->text("description");
-            $table->foreignId("user_id")->constrained();
-            $table->integer("price");
+            $table->foreignId("user_id")->constrained()->onDelete("cascade");
+            $table->integer("price")->nullable();
 
             $table->softDeletes();
             $table->timestamps();
