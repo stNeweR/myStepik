@@ -1,3 +1,3 @@
 @props(["href"])
 
-<a href="{{ $href}}" class="hover:text-purple-600 transition">{{ $slot}}</a>
+<a href="{{ $href}}" class="text-purple-600 hover:text-purple-700 transition">{{ $slot}}</a>

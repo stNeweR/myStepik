@@ -1,16 +1,16 @@
 <?php
 
+use App\Http\Controllers\App\RegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\App\LoginController;
 
 
-Route::post('/login', [AuthController::class, 'login'])->name("login");
-Route::post("/register", [AuthController::class, "register"])->name("register");
-Route::middleware("auth:sanctum")->group(function() {
-    Route::post("/logout", [AuthController::class, "logout"])->name("logout");
+Route::as("register.")->prefix("/register/")->group(function () {
+    Route::get("", RegisterController::class)->name("index");
+    Route::post("register", [RegisterController::class, "register"])->name("create");
 });
 
-//Route::group(["middleware" => "auth:sanctum"], function () {
-//   Route::get("/users", [UserController::class, "index"]);
-//});
+Route::as("login.")->prefix("/login/")->group(function () {
+    Route::get("", LoginController::class)->name("index");
+    Route::post("login", [LoginController::class, "create"])->name("create");
+});
