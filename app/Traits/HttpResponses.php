@@ -15,7 +15,7 @@ trait HttpResponses
 
     public function error($data, $message = null, $code)
     {
-        return request()->json([
+        return response()->json([
             "data" => $data,
             "message" => $message,
             "status" => "Has error...",

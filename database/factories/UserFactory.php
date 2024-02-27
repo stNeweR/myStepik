@@ -23,10 +23,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
             'user_name' => fake()->name(),
-            "first_name" => fake()->firstName(),
-            "last_name" => fake()->lastName(),
+//            "first_name" => fake()->firstName(),
+//            "last_name" => fake()->lastName(),
+            "full_name" =>   fake()->firstName() . " " . fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'password' => bcrypt("12345"),
             'remember_token' => Str::random(10),

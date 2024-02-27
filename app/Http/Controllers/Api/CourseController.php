@@ -13,4 +13,9 @@ class CourseController extends Controller
         $courses = Course::all();
         return response()->json($courses, 200);
     }
+
+    public function userCourse(Request $request)
+    {
+
+    }
 }

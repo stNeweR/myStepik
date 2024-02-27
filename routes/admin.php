@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::as("admin.")->group(function () {
+Route::as("admin.")->prefix("admin")->group(function () {
     Route::get("/", [AdminController::class, "index"])->name("index");
 
     Route::get("/links", [AdminController::class, "links"])->name("links");
@@ -37,5 +37,4 @@ Route::as("admin.")->group(function () {
         Route::delete("/{id}/delete", [LessonController::class, "delete"])->name("delete");
         Route::post("/{id}/restore", [LessonController::class, "restore"])->name("restore");
     });
-
 });

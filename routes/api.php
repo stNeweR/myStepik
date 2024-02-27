@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-
-
-Route::as("api.")->group(function () {
+Route::as("api.")->middleware("auth:sanctum")->group(function () {
     Route::prefix("courses/")->as("courses.")->group(function () {
         Route::get("", [CourseController::class, "index"])->name("index");
+        Route::get("myCourses", [CourseController::class, "userCourse"])->name("userCourse");
     });
     Route::prefix("users/")->as("users.")->group(function () {
         Route::get("", [UserController::class, "index"])->name("index");

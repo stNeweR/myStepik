@@ -19,7 +19,18 @@ class AuthController extends Controller
 
     public function login(LoginUserRequest $request)
     {
-        return "This is my register method!";
+        $data = $request->validated();
+
+        if (! Auth::attempt($data)) {
+            return $this->error("", "Credentionals!", 401);
+        }
+
+        $user = User::query()->where("email", $data["email"])->first();
+
+        return $this->success([
+            "user" => $user,
+            "token" => $user->createToken("API TOKEN of " . $user->user_name)->plainTextToken
+        ]);
     }
 
     public function register(UserRequest $request)
@@ -41,6 +52,10 @@ class AuthController extends Controller
 
     public function logout()
     {
-        return response()->json("Logout!!!");
+        // Auth::user()->currentAccessToken()->delete();
+
+        return $this->success([
+            "message" => "Logged out and delete token!"
+        ]);
     }
 }
