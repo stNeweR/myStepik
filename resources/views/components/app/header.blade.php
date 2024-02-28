@@ -9,7 +9,7 @@
             </nav>
         </div>
         <div class="flex gap-4">
-            <a href="">Войти</a>
+            <a href="{{ route("login.index") }}">Войти</a>
             <a href="{{ route("register.index") }}">Регистрация</a>
         </div>
     </div>

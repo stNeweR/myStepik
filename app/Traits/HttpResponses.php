@@ -13,12 +13,12 @@ trait HttpResponses
         ], $code);
     }
 
-    public function error($data, $message = null, $code)
-    {
-        return response()->json([
-            "data" => $data,
-            "message" => $message,
-            "status" => "Has error...",
-        ], $code);
-    }
+//    public function error($data, $message = null, $code)
+//    {
+//        return response()->json([
+//            "data" => $data,
+//            "message" => $message,
+//            "status" => "Has error...",
+//        ], $code);
+//    }
 }

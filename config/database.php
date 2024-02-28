@@ -35,13 +35,13 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-        ],
+//        'sqlite' => [
+//            'driver' => 'sqlite',
+//            'url' => env('DB_TEST_DATABASE'),
+//            'database' => env('DB_TEST_DATABASE', database_path('C:/SharedFolder/database.db')),
+//            'prefix' => '',
+//            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+//        ],
 
         'mysql' => [
             'driver' => 'mysql',
@@ -62,6 +62,27 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+
+        'testing' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_TEST_HOST', '127.0.0.1'),
+            'port' => env('DB_TEST_PORT', '3307'),
+            'database' => env('DB_TEST_DATABASE', 'stepik_app_test'),
+            'username' => env('DB_TEST_USERNAME', 'test'),
+            'password' => env('DB_TEST_PASSWORD', 'test'),
+            'unix_socket' => env('DB_TEST_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
 
         'pgsql' => [
             'driver' => 'pgsql',

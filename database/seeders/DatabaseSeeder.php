@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
              'email' => 'shyguy096com@gmail.com',
          ]);
          \App\Models\User::factory(40)->create();
-         Course::factory(30)->create();
+//         Course::factory(30)->create();
 //         Lesson::factory(240)->create();
 //         CourseUser::factory(10)->create();
 //         Survey::factory(80)->create();
