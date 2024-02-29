@@ -1,21 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\App\UserController;
 
-Route::get("/", function () {
-   return view("app.index");
+Route::view("/", "app.index")->name("home");
+
+Route::middleware("auth")->group(function () {
+    Route::get("/profile", [UserController::class, "index"])->name("profile");
 });
-
-Route::get('/test-connection', function () {
-    try {
-        DB::connection('testing')->getPdo();
-        return "Соединение с базой данных успешно установлено.";
-    } catch (\Exception $e) {
-        return "Ошибка соединения с базой данных: " . $e->getMessage();
-    }
-});
-
-
-Route::get("/profile", function () {
-    dd("PROFILE!");
-})->name("profile");

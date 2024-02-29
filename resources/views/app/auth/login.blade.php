@@ -31,7 +31,7 @@
                     <label for="remember">Remember me</label>
                 </div>
                 <p>Если вы не зарегестрированы: <x-link href="{{ route('register.index') }}">Register!</x-link></p>
-                <button class="bg-purple-600 py-1 rounded mt-2 hover:bg-transparent hover:border hover:border-purple-600 transition">Register!</button>
+                <button class="bg-purple-600 py-1 rounded mt-2 hover:bg-transparent hover:border hover:border-purple-600 transition">Login!</button>
             </form>
         </x-block>
     </x-container>

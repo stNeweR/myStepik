@@ -29,4 +29,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($roleName)
+    {
+        return $this->roles()->where('body', $roleName)->exists();
+    }
 }
