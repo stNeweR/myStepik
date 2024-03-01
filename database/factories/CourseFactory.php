@@ -19,7 +19,7 @@ class CourseFactory extends Factory
     {
         return [
             "title" => fake()->sentence(),
-            "description" => fake()->paragraph(),
+            "description" => fake()->paragraph(6),
             "user_id" => rand(2, User::all()->count()),
             "price" => fake()->randomNumber(5, true),
         ];

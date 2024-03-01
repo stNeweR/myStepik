@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Main\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Traits\HttpResponses;
-use Illuminate\Http\Request;
 
 
 class RegisterController extends Controller

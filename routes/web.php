@@ -1,10 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\App\UserController;
+use App\Http\Controllers\Main\UserController;
+use App\Http\Controllers\Main\CatalogController;
+use App\Http\Controllers\Main\CourseController;
 
 Route::view("/", "app.index")->name("home");
 
 Route::middleware("auth")->group(function () {
     Route::get("/profile", [UserController::class, "index"])->name("profile");
+});
+
+Route::get("/catalog", [])->name("catalog");
+
+Route::prefix("/catalog")->as("catalog.")->group(function () {
+    Route::get("", [CatalogController::class, "index"]);
+});
+
+Route::prefix("/courses")->as("courses.")->group(function () {
+    Route::get("/{id}", [CourseController::class, "show"])->name("show");
+    Route::post("/{id}/subscribe", [CourseController::class, "subscribe"])->name("subscribe");
+    Route::delete("/{id}/unsubscribe", [CourseController::class, "unSubscribe"])->name("unsubscribe");
+
+
+
 });

@@ -5,7 +5,7 @@
         </div>
         <nav class="ml-4">
             <ul>
-                <li><a href="{{ route("admin.index")}}" class="hover:text-purple-700 font-bold">Home</a></li>
+                <li><x-link href="{{ route('admin.index')}}" >Home</x-link></li>
             </ul>
         </nav>
     </div>

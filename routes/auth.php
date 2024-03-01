@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\App\RegisterController;
+use App\Http\Controllers\Main\Auth\LoginController;
+use App\Http\Controllers\Main\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\App\LoginController;
 
 
 Route::middleware("guest")->group(function () {

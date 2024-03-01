@@ -25,6 +25,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class);
     }
 
+    public function subscribeCourse($courseId)
+    {
+        return $this->courses()->where("course_id", $courseId)->exists();
+    }
+
     public function myCourses()
     {
         return $this->hasMany(Course::class);

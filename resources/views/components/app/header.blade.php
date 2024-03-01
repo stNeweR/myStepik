@@ -3,21 +3,21 @@
         <div class="flex items-center gap-4 py-2">
             <x-logo></x-logo>
             <nav class="flex gap-4">
-                <x-app.link href="">Каталог</x-app.link>
-                <x-app.link href="">Обучение</x-app.link>
-                <x-app.link href="">Преподование</x-app.link>
+                <x-link href="{{ route('catalog.') }}">Каталог</x-link>
+                <x-link href="">Обучение</x-link>
+                <x-link href="">Преподование</x-link>
                 @can("admin-access")
-                    <x-app.link href="{{ route('admin.index')}}">Admin!</x-app.link>
+                    <x-link href="{{ route('admin.index')}}">Admin!</x-link>
                 @endcan
             </nav>
         </div>
         <div class="flex gap-4">
             @guest
-                <x-app.link href="{{ route('login.index') }}">Войти</x-app.link>
-                <x-app.link href="{{ route('register.index') }}">Регистрация</x-app.link>
+                <x-link href="{{ route('login.index') }}">Войти</x-link>
+                <x-link href="{{ route('register.index') }}">Регистрация</x-link>
             @endguest
             @auth
-                <x-app.link href="{{ route('profile') }}">Profile</x-app.link>
+                <x-link href="{{ route('profile') }}">Profile</x-link>
                 <form action="{{ route("logout")}}" method="post">
                     @csrf
                     @method("post")

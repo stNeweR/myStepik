@@ -9,7 +9,7 @@
         @yield("title")
     </title>
 </head>
-<body class="h-screen text-white">
+<body class="h-full text-white">
     <x-app.header/>
     <main class="flex flex-col bg-slate-900 h-full">
         <x-container class="pt-10 flex-1">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Main\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
@@ -37,8 +37,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->back();
-
-        dd($request->all());
     }
 }
 

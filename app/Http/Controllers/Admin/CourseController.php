@@ -27,7 +27,7 @@ class CourseController extends Controller
         $users = $course->users;
         return view("admin.courses.show", [
             "author" => $course->user,
-            "course" => $course,
+            "courses" => $course,
             "lessons" => $course->lessons,
             "users" => $users,
         ]);
@@ -50,7 +50,7 @@ class CourseController extends Controller
     {
         $course = Course::withTrashed()->findOrFail($id);
         return view("admin.courses.edit", [
-            "course" => $course,
+            "courses" => $course,
         ]);
     }
 
