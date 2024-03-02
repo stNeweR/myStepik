@@ -14,4 +14,14 @@ class Lesson extends Model
     {
         return $this->hasMany(Survey::class);
     }
+
+    public function hasSurvey()
+    {
+        return !$this->surveys->isEmpty();
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

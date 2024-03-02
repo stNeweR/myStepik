@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\Main\CatalogController;
 use App\Http\Controllers\Main\CourseController;
+use App\Http\Controllers\Main\LessonController;
 
 Route::view("/", "app.index")->name("home");
 
@@ -21,7 +22,7 @@ Route::prefix("/courses")->as("courses.")->group(function () {
     Route::get("/{id}", [CourseController::class, "show"])->name("show");
     Route::post("/{id}/subscribe", [CourseController::class, "subscribe"])->name("subscribe");
     Route::delete("/{id}/unsubscribe", [CourseController::class, "unSubscribe"])->name("unsubscribe");
-
-
-
+});
+Route::prefix("/lessons")->middleware("isSubscribe")->as("lessons.")->group(function () {
+    Route::get("/{id}",[LessonController::class, "show"])->name("show");
 });
