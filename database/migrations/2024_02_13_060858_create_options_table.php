@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
 
-            $table->string("body");
+            $table->text("body");
             $table->boolean("is_correct");
             $table->foreignId("survey_id")->constrained()->onDelete("cascade");
 

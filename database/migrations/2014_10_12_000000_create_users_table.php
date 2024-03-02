@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("full_name");
             $table->string('email')->unique();
             $table->string("password");
+            $table->text("description");
 
             $table->softDeletes();
             $table->rememberToken();
