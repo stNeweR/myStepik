@@ -26,13 +26,13 @@
         </x-block>
         <x-block>
             <h1 class="text-xl"><b>My courses:</b></h1>
-            @if(empty($myCourses))
-                @foreach ($myCourses as $course)
-                    <p>{{ $course->title }}</p>
-                @endforeach
-            @else
-                <p>No course!!</p>
-            @endif
+                @if($myCourses->isEmpty())
+                    <p>No course!!</p>
+                @endif
+                    @foreach ($myCourses as $course)
+                        <p>{{ $course->title }}</p>
+                    @endforeach
+                @else
         </x-block>
     </x-app.container>
 

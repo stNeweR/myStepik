@@ -19,7 +19,7 @@ class SurveyFactory extends Factory
     public function definition(): array
     {
         return [
-            "question" => fake()->sentence(),
+            "body" => fake()->text(),
             "lesson_id" => rand(1, Lesson::query()->count())
         ];
     }

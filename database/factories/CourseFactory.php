@@ -20,8 +20,10 @@ class CourseFactory extends Factory
         return [
             "title" => fake()->sentence(),
             "description" => fake()->paragraph(6),
-            "user_id" => rand(2, User::all()->count()),
-            "price" => fake()->randomNumber(5, true),
+            "body" => fake()->text(2000),
+            "user_id" => rand(0, User::all()->count()),
+            "price" => fake()->randomNumber(4, true),
+            "is_published" => fake()->boolean(),
         ];
     }
 }

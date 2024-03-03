@@ -14,18 +14,21 @@ use App\Models\RoleUser;
 
 class DatabaseSeeder extends Seeder
 {
-    use UserAllFactory;
+    use UserSeed, CourseSeed, ThemeSeed;
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-//        $this->users();
-//        $this->roles();
-        //  Course::factory(30)->create();
-        //  Lesson::factory(240)->create();
-        //  CourseUser::factory(20)->create();
-        //  Survey::factory(80)->create();
-        //  Option::factory(240)->create();
+    //    $this->users(50);
+    //    $this->roles(8);
+    //    $this->courses(30);
+    //    $this->tags();
+    //    $this->themes(150);
+    //    $this->lessons(450);
+    //    $this->surveys(150);
+    //    $this->options(450);
+    //    $this->courseTag(45);
+    //    $this->courseUser(50);
     }
 }

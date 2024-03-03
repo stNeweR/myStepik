@@ -19,8 +19,8 @@ class CourseUserFactory extends Factory
     public function definition(): array
     {
         return [
-            "course_id" => rand(1, Course::query()->count()),
-            "user_id" => rand(1, User::query()->count())
+            "course_id" => rand(0, Course::query()->count()),
+            "user_id" => rand(0, User::query()->count())
         ];
     }
 }

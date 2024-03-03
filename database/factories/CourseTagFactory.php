@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Course;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CourseTag>
@@ -17,7 +19,8 @@ class CourseTagFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "course_id" => rand(1, Course::query()->count()),
+            "tag_id" => rand(1, Tag::query()->count()),
         ];
     }
 }

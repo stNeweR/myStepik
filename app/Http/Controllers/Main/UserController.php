@@ -14,6 +14,7 @@ class UserController extends Controller
         $user = Auth::user();
         $courses = Auth::user()->courses;
         $myCourses = Auth::user()->myCourses;
+//        dd($myCourses);
         return view("app.user.index", [
             "user" => $user,
             "courses" => $courses,

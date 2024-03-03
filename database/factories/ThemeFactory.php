@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class ThemeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "title" => $this->faker->sentence(8),
+            "description" => $this->faker->text(1000),
+            "course_id" => rand(1, Course::query()->count()),
         ];
     }
 }

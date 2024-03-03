@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'user_name' => fake()->name(),
             "full_name" =>   fake()->firstName() . " " . fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
+            "description" => fake()->text(500),
             'password' => bcrypt("12345"),
         ];
     }
