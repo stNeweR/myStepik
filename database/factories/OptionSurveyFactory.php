@@ -2,16 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Lesson;
-use App\Models\Lessons;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Option;
 use App\Models\Survey;
-
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Survey>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OptionSurvey>
  */
-class SurveyFactory extends Factory
+class OptionSurveyFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,8 +18,8 @@ class SurveyFactory extends Factory
     public function definition(): array
     {
         return [
-            "body" => fake()->text(),
-            "lesson_id" => rand(1, Lesson::query()->count()),
+            "option_id" => fake()->numberBetween(1, Option::query()->count()),
+            "survey_id" => fake()->unique()->numberBetween(0, Survey::query()->count()),
         ];
     }
 }

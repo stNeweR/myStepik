@@ -14,9 +14,9 @@ class Course extends Model
         "title", "description", "price"
     ];
 
-    public function lessons()
+    public function themes()
     {
-        return $this->hasMany(Lesson::class);
+        return $this->hasMany(Theme::class);
     }
 
     public function user()

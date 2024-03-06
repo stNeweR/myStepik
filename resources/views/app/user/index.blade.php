@@ -8,31 +8,41 @@
 
     <x-app.container>
         <x-block>
-            <h1 class="text-xl"><b>User data!</b></h1>
+            <h1 class="text-2xl"><b>User data!</b></h1>
             <p><b>User_name: </b>{{ $user->user_name }}</p>
             <p><b>Full_name: </b>{{ $user->full_name }}</p>
             <p><b>Email: </b>{{ $user->email }}</p>
-        </x-block>
-        <x-block class="">
-            <h1 class="text-xl"><b>Courses:</b></h1>
-            <div class="flex flex-col gap-4 my-2 hover:shadow-lg">
-                @foreach ($courses as $course)
-                    <a class="border-b hover:border-purple-800 hover:bg-slate-900 py-1 px-2" href="{{ route("courses.show", $course->id) }}">
-                        <h1>{{ $course->title }}</h1>
-                        <h1>{{ $course->description }}</h1>
-                    </a>
-                @endforeach
-            </div>
+            <p><b>Profile: </b>{{ $user->description }}</p>
         </x-block>
         <x-block>
-            <h1 class="text-xl"><b>My courses:</b></h1>
-                @if($myCourses->isEmpty())
-                    <p>No course!!</p>
-                @endif
-                    @foreach ($myCourses as $course)
-                        <p>{{ $course->title }}</p>
-                    @endforeach
-                @else
+            <h1 class="text-2xl"><b>Courses:</b></h1>
+            <div class="flex flex-col gap-4 my-2 hover:shadow-lg">
+                @foreach ($courses as $course)
+                    <div class="rounded hover:border-purple-800 bg-slate-900 p-2 hover:shadow-lg">
+                        <h1 class="text-xl"><b>Course title: </b>{{ $course->title }}</h1>
+                        <div class="flex flex-col">
+                            @foreach ($course["themes"] as $theme)
+                                <div class="flex flex-col justify-center gap-2 my-1">
+                                    <h1><b>{{ $theme->id }})</b> {{ $theme->title }}</h1>
+                                    <div class="grid grid-cols-4 gap-2">
+                                        @foreach ($theme["lessons"] as $lesson)
+                                            @if ($myLessons->contains('id', $lesson->id))
+                                                <a href="{{ route("lessons.show", $lesson->id)}}" class="bg-green-800 border rounded flex items-center justify-center px-2 py-1">
+                                                    <small class="">{{ $lesson->id }}  {{ $lesson->title}}</small>
+                                                </a>
+                                            @else
+                                                <a href="{{ route("lessons.show", $lesson->id)}}" class="border rounded flex items-center justify-center px-2 py-1">
+                                                    <small class="">{{ $lesson->id }} {{ $lesson->title }}</small>
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </x-block>
     </x-app.container>
 

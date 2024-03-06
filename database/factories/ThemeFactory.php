@@ -18,8 +18,8 @@ class ThemeFactory extends Factory
     public function definition(): array
     {
         return [
-            "title" => $this->faker->sentence(8),
-            "description" => $this->faker->text(1000),
+            "title" => fake()->sentence(),
+            "description" => fake()->text(1000),
             "course_id" => rand(1, Course::query()->count()),
         ];
     }

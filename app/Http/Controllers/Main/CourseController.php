@@ -14,11 +14,11 @@ class CourseController extends Controller
     {
         $course = Course::query()->findOrFail($id);
         $author = $course->user;
-        $lessons = $course->lessons;
+        $themes = $course->themes;
         return view("app.courses.show", [
             "course" => $course,
             "author" => $author,
-            "lessons" => $lessons,
+            "themes" => $themes,
         ]);
     }
 
@@ -29,8 +29,6 @@ class CourseController extends Controller
             "course_id" => $id,
         ]);
         return redirect()->back();
-//        dump($id);
-        dd($request->all());
     }
 
     public function unSubscribe(Request $request, $id)

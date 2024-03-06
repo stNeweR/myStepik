@@ -13,4 +13,9 @@ class Survey extends Model
     {
         return $this->hasMany(Option::class);
     }
+
+    public function succesOption()
+    {
+        return $this->belongsToMany(Option::class);
+    }
 }

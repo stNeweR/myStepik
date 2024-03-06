@@ -44,4 +44,14 @@ class User extends Authenticatable
     {
         return $this->roles()->where('body', $roleName)->exists();
     }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class);
+    }
+
+    public function succesLesson($lessonId)
+    {
+        return $this->lessons()->where("lesson_id", $lessonId)->exists();
+    }
 }

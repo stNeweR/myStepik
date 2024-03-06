@@ -20,10 +20,10 @@ class IsSubscribeCourseMiddleware
     {
         $lessonId = $request->route("id");
         $lesson = Lesson::query()->findOrFail($lessonId);
-        $course = $lesson->course;
+        $theme = $lesson->theme;
+        $course = $theme->course;
 
         if ($course && Auth::user()) {
-//            dd(Auth::user()->subscribeCourse($course->id));
             if (Auth::user()->subscribeCourse($course->id)) {
                 return $next($request);
             };

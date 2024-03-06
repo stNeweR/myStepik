@@ -11,7 +11,7 @@
 </head>
 <body class="h-full text-white">
     <x-app.header/>
-    <main class="flex flex-col bg-slate-900 h-full">
+    <main class="flex flex-col bg-slate-900 min-h-screen max-h-full">
         <x-container class="pt-14">
             @yield("page")
         </x-container>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Course;
 use App\Models\CourseTag;
+use App\Models\LessonUser;
 use App\Models\Tag;
 
 trait CourseSeed
@@ -53,10 +54,14 @@ trait CourseSeed
             "body" => "Spring"
         ]);
     }
-
     public function courseTag($number)
     {
         CourseTag::factory($number)->create();
+    }
+
+    public function lessonUser($number)
+    {
+        LessonUser::factory($number)->create();
     }
 
 }

@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\CourseUser;
 use App\Models\Lesson;
 use App\Models\Option;
+use App\Models\OptionSurvey;
 use App\Models\Survey;
 use Illuminate\Database\Seeder;
 use App\Models\RoleUser;
@@ -30,5 +31,7 @@ class DatabaseSeeder extends Seeder
     //    $this->options(450);
     //    $this->courseTag(45);
     //    $this->courseUser(50);
+    //    $this->lessonUser(60);
+        OptionSurvey::factory(150)->create();
     }
 }
