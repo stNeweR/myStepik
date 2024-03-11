@@ -46,6 +46,9 @@
                         <x-link href="{{ route('lessons.show', $lesson->id) }}">{{ $lesson->title }}</x-link>
                     @endforeach
                 @endforeach
+                @can("isAuthor", $course->id)
+                    <a href="{{ route("courses.themes.create", $course->id) }}" class="border text-center  border-purple-700 transition hover:bg-purple-700 py-1 px-2 rounded">Add theme</a>
+                @endcan
             </div>
         </x-block>
     </x-app.container>

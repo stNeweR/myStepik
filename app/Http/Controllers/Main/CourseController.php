@@ -15,13 +15,18 @@ class CourseController extends Controller
     public function show($courseId)
     {
         $course = Course::query()->findOrFail($courseId);
-        $author = $course->user;
-        $themes = $course->themes;
-        return view("app.courses.show", [
-            "course" => $course,
-            "author" => $author,
-            "themes" => $themes,
-        ]);
+//        dd($course->is_published);
+        if ($course["is_published"] || Gate::allows('isAuthor', $course->id)) {
+            $author = $course->user;
+            $themes = $course->themes;
+            return view("app.courses.show", [
+                "course" => $course,
+                "author" => $author,
+                "themes" => $themes,
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     public function subscribe(Request $request, $id)
@@ -88,7 +93,6 @@ class CourseController extends Controller
     {
         $data = $request->validated();
         $course = Course::query()->findOrFail($id);
-
         $course->update($data);
         return redirect()->route("courses.show", $course->id);
     }

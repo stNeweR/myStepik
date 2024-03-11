@@ -9,9 +9,9 @@
         @yield("title")
     </title>
 </head>
-<body class="h-full text-white">
+<body class="h-full text-white flex flex-col">
     <x-app.header/>
-    <main class="flex flex-col bg-slate-900 min-h-screen max-h-full">
+    <main class="flex flex-col bg-slate-900 min-h-screen max-h-full flex-1">
         <x-container class="pt-14">
             @yield("page")
         </x-container>

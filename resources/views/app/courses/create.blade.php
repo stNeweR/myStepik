@@ -18,7 +18,7 @@
                 <textarea id="body" name="body" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2" rows="10"></textarea>
                 <label for="price">Price:</label>
                 <input type="number" name="price" id="price" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2">
-                <button class="border border-purple-600 py-1 rounded mt-2 hover:bg-purple-600 transition" type="submit">Create!</button>
+                <button class="border border-purple-600 py-1 rounded mt-2 hover:bg-purple-600 transition" type="submit">Create course!</button>
             </form>
         </x-block>
     </x-container>

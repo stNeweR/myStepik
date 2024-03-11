@@ -9,6 +9,10 @@ class Theme extends Model
 {
     use HasFactory;
 
+
+    protected  $fillable = [
+        "title", "description", "course_id"
+    ];
     public function lessons()
     {
         return $this->hasMany(Lesson::class);

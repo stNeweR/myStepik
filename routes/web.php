@@ -6,6 +6,7 @@ use App\Http\Controllers\Main\CatalogController;
 use App\Http\Controllers\Main\CourseController;
 use App\Http\Controllers\Main\LessonController;
 use App\Http\Controllers\Main\SurveyController;
+use App\Http\Controllers\Main\ThemeController;
 
 Route::view("/", "app.index")->name("home");
 
@@ -28,7 +29,12 @@ Route::prefix("/courses/")->as("courses.")->group(function () {
     Route::put("{id}", [CourseController::class, "update"])->name("update");
     Route::post("{id}/subscribe", [CourseController::class, "subscribe"])->name("subscribe");
     Route::delete("{id}/unsubscribe", [CourseController::class, "unSubscribe"])->name("unsubscribe");
+    Route::prefix("{id}/themes/")->as("themes.")->group(function () {
+        Route::get("create", [ThemeController::class, "create"])->name("create");
+        Route::post("store", [ThemeController::class, "store"])->name("store");
+    });
 });
+
 
 Route::prefix("/lessons")->middleware("isSubscribe")->middleware("auth")->as("lessons.")->group(function () {
     Route::get("/{id}", [LessonController::class, "show"])->name("show");
