@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
+    public function isMyCourse($id)
+    {
+        return $this->myCourses()->where("id", $id)->exists();
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);

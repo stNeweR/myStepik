@@ -11,8 +11,7 @@ class CatalogController extends Controller
 
     public function index()
     {
-        $courses = Course::query()->orderBy("created_at", "desc")->paginate(10);
-//        dd($courses);
+        $courses = Course::query()->where("is_published", 1)->orderBy("created_at", "desc")->paginate(10);
         return view("app.catalog.index", [
             "courses" => $courses
         ]);

@@ -11,7 +11,7 @@ class Course extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        "title", "description", "price"
+        "title", "body", "is_published", "user_id", "description", "price"
     ];
 
     public function themes()

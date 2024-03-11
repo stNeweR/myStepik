@@ -4,9 +4,9 @@
             <x-logo></x-logo>
             <nav class="flex gap-4">
                 <x-link href="{{ route('catalog.') }}">Каталог</x-link>
-                <x-link href="">Обучение</x-link>
-                <x-link href="">Преподование</x-link>
-                @can("admin-access")
+                <x-link href="{{ route('myCourses') }}">Обучение</x-link>
+                 <x-link href="{{ route('courses.create') }}">Преподование</x-link>
+                @can("adminAccess")
                     <x-link href="{{ route('admin.index')}}">Admin!</x-link>
                 @endcan
             </nav>

@@ -19,7 +19,7 @@
             <div class="flex flex-col gap-4 my-2 hover:shadow-lg">
                 @foreach ($courses as $course)
                     <div class="rounded hover:border-purple-800 bg-slate-900 p-2 hover:shadow-lg">
-                        <h1 class="text-xl"><b>Course title: </b>{{ $course->title }}</h1>
+                        <h1 class="text-xl"><b>Заголовок курса: </b>{{ $course->title }}</h1>
                         <div class="flex flex-col">
                             @foreach ($course["themes"] as $theme)
                                 <div class="flex flex-col justify-center gap-2 my-1">

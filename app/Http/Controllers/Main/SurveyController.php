@@ -11,7 +11,6 @@ class SurveyController extends Controller
 {
     public function check(Request $request, $id)
     {
-        dump($request->all());
         $result = OptionSurvey::query()
             ->where("survey_id", $id)
             ->where("option_id", $request->option_id)->exists();

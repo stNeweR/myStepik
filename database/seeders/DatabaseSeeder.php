@@ -32,6 +32,6 @@ class DatabaseSeeder extends Seeder
     //    $this->courseTag(45);
     //    $this->courseUser(50);
     //    $this->lessonUser(60);
-        OptionSurvey::factory(150)->create();
+    //    OptionSurvey::factory(150)->create();
     }
 }

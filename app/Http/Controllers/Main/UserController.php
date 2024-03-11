@@ -13,7 +13,6 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $courses = Auth::user()->courses;
-        $myCourses = Auth::user()->myCourses;
         $myLessons = Auth::user()->lessons;
         $courses = $courses->map(function ($course) {
             $course["themes"] = $course->themes;
@@ -28,8 +27,8 @@ class UserController extends Controller
         return view("app.user.index", [
             "user" => $user,
             "courses" => $courses,
-            "myCourses" => $myCourses,
             "myLessons" => $myLessons,
         ]);
     }
+
 }
