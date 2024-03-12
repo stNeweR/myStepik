@@ -12,7 +12,7 @@
 <body class="h-full text-white">
     <x-app.header/>
     <main class="flex flex-col bg-slate-900 h-full">
-        <div class="flex-1 mt-2 gap-4 flex flex-col pt-10">
+        <div class="flex-1 mt-2 gap-4 flex flex-col min-h-screen max-h-full pt-10">
             @yield("page")
         </div>
     </main>

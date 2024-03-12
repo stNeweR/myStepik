@@ -14,7 +14,7 @@
                 <input type="text" name="title" id="title" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2">
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2" rows="5"></textarea>
-                <button type="submit" class="border border-purple-600 py-1 rounded mt-2 hover:bg-purple-600 transition">Create theme</button>
+                <x-form-button>Create theme!</x-form-button>
             </form>
         </x-block>
     </x-container>

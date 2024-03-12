@@ -15,9 +15,9 @@
             </form>
         </x-block>
         <x-block>
-            @foreach($courses as $course)
+            @foreach($courses as $key => $course)
                 <a href="{{ route("courses.show", $course->id) }}">
-                    <div class="border-b py-3 px-3 hover:border-purple-600 hover:bg-slate-900">
+                    <div class=" {{$key == count($courses) -1 ? '' : 'border-b'}} hover:border-b py-3 px-3 hover:border-purple-600 hover:bg-slate-900">
                         <h1>{{ $course->title  }}</h1>
                         <p>{{$course->description}}</p>
                     </div>

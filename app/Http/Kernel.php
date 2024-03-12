@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AuthorMiddleware;
 use App\Http\Middleware\IsSubscribeCourseMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Session\Middleware\StartSession;
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         "admin" => AdminMiddleware::class,
         "isSubscribe" => IsSubscribeCourseMiddleware::class,
+        "author" => AuthorMiddleware::class,
     ];
 }

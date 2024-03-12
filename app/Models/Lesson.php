@@ -10,6 +10,11 @@ class Lesson extends Model
 {
     use HasFactory, SoftDeletes;
 
+
+    protected $fillable = [
+        'title', 'body', 'theme_id'
+    ];
+
     public function surveys()
     {
         return $this->hasMany(Survey::class);

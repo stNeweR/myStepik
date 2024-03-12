@@ -36,10 +36,12 @@ Route::prefix("/courses/")->as("courses.")->group(function () {
 });
 
 
-Route::prefix("/lessons")->middleware("isSubscribe")->middleware("auth")->as("lessons.")->group(function () {
-    Route::get("/{id}", [LessonController::class, "show"])->name("show");
-    Route::post("/{id}/succes", [LessonController::class, "succes"])->name("succes");
-    Route::delete("/{id}/unsuccess", [LessonController::class, "unsuccess"])->name("unsuccess");
+Route::prefix("/lessons/")->middleware("isSubscribe")->middleware("auth")->as("lessons.")->group(function () {
+    Route::get("{id}", [LessonController::class, "show"])->name("show");
+    Route::post("{id}/succes", [LessonController::class, "succes"])->name("succes");
+    Route::delete("{id}/unsuccess", [LessonController::class, "unsuccess"])->name("unsuccess");
+    Route::get("{theme_id}/create", [LessonController::class, "create"])->name("create")->middleware("author");
+    Route::post("{theme_id}/store", [LessonController::class, "store"])->name("store")->middleware("author");
 });
 
 Route::prefix("/surveys")->middleware("auth")->as("surveys.")->group(function () {

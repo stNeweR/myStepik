@@ -29,7 +29,7 @@
                             </form>
                         @endif
                         @can("isAuthor", $course->id)
-                            <a href="{{ route("courses.edit", $course->id) }}" class="border border-purple-700 transition hover:bg-purple-700 py-1 px-2 rounded">Edit course info</a>
+                            <x-button href="{{ route('courses.edit', $course->id) }}">Edit course info</x-button>
                         @endcan
                     @else
                         <x-link href="{{ route('login.index')}}">Login!</x-link>
@@ -45,9 +45,10 @@
                     @foreach($theme->lessons as $lesson)
                         <x-link href="{{ route('lessons.show', $lesson->id) }}">{{ $lesson->title }}</x-link>
                     @endforeach
+                    <x-link href="{{ route('lessons.create', $theme->id) }}">Create lesson</x-link>
                 @endforeach
                 @can("isAuthor", $course->id)
-                    <a href="{{ route("courses.themes.create", $course->id) }}" class="border text-center  border-purple-700 transition hover:bg-purple-700 py-1 px-2 rounded">Add theme</a>
+                    <x-button href="{{ route('courses.themes.create', $course->id) }}" class="text-center">Add theme</x-button>
                 @endcan
             </div>
         </x-block>

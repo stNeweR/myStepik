@@ -5,7 +5,7 @@
 @endsection
 
 @section("page")
-        <div class="flex gap-4">
+        <div class="flex gap-4 min-h-screen max-h-full">
             <div class="bg-slate-800">
                 <h1 class="text-xl m-1"><b>{{ $course->title }}</b></h1>
                 <div class="flex flex-col">

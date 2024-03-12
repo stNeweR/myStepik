@@ -6,31 +6,31 @@
 
 @section("page")
     <x-container>
-        @foreach ($courses as $course)
-            <a href="{{ route('courses.show', $course->id) }}">
-                <x-block>
-                    <div class="rounded bg-slate-900 p-2 hover:shadow-lg">
-                        <h1><b class="text-xl">Курс: </b>{{ $course->title }}</h1>
-                        <p><b>Описание: </b>{{ $course->description }}</p>
-                        <p><b>Тело: </b>{{ $course->body }}</p>
-                        <div class="flex flex-col">
-                            <h1>Темы в курсе:</h1>
-                            @foreach ($course["themes"] as $theme)
-                                <div class="flex flex-col justify-center gap-2 my-1">
-                                    <h1><b>{{ $theme->id }})</b> {{ $theme->title }}</h1>
-                                    <div class="grid grid-cols-4 gap-2">
-                                        @foreach ($theme["lessons"] as $lesson)
-                                                <a href="{{ route("lessons.show", $lesson->id)}}" class="border rounded flex items-center justify-center px-2 py-1">
-                                                    <small class="">{{ $lesson->id }}  {{ $lesson->title}}</small>
-                                                </a>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endforeach
+        <x-block>
+            <form action="" method="get">
+                <label for="find">Поиск:</label>
+                <input type="text" id="find" class="bg-transparent border-b border-slate-900 outline-none focus:border-purple-600">
+                <button type="submit">Поиск</button>
+            </form>
+        </x-block>
+        <x-block>
+            @foreach($courses as $key => $course)
+                <a href="{{ route("courses.show", $course->id) }}">
+                    <div class="{{ $key == count($courses) -1 ? 'border-b' : '' }} hover:border-b  py-3 px-3 hover:border-purple-600 hover:bg-slate-900 flex justify-between items-center">
+                        <div>
+                            <h1>{{ $course->title  }}</h1>
+                            <p>{{$course->description}}</p>
+                        </div>
+                        <div>
+                            @if($course->is_published)
+                                <h1>{{ date("Y-m-d",strtotime($course->created_at)) }}</h1>
+                            @else
+                                <h1 class="bg-rose-500 py-1 px-2 rounded">Not pusblished...</h1>
+                            @endif
                         </div>
                     </div>
-                </x-block>
-            </a>
-        @endforeach
+                </a>
+            @endforeach
+        </x-block>
     </x-container>
 @endsection

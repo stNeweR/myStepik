@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LessonRequest;
+use App\Http\Requests\ThemeRequest;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\LessonUser;
@@ -49,5 +52,27 @@ class LessonController extends Controller
             ->where("lesson_id", $id)
             ->delete();
         return redirect()->back();
+    }
+
+    public function create($theme_id)
+    {
+        $theme = Theme::query()->findOrFail($theme_id);
+        return view("app.courses.lessons.create", [
+            "theme" => $theme,
+        ]);
+    }
+
+    public function store(LessonRequest $request, $theme_id)
+    {
+        $data = $request->validated();
+
+        $course_id = Theme::query()->find($theme_id)->course->id;
+        Lesson::query()->create([
+            "title" => $data["title"],
+            "body" => $data['body'],
+            'theme_id' => $theme_id,
+        ]);
+
+        return redirect()->route("courses.show", $course_id);
     }
 }

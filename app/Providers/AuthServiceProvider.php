@@ -28,10 +28,11 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->hasRole("admin");
         });
 
-
-
         Gate::define("isAuthor", function ($user, $courseId) {
             return $user->isMyCourse($courseId);
         });
+
+
+
     }
 }
