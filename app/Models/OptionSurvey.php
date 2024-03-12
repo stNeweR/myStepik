@@ -10,4 +10,8 @@ class OptionSurvey extends Model
     use HasFactory;
 
     protected $table = "option_survey";
+
+    protected $fillable = [
+        'option_id', 'survey_id'
+    ];
 }

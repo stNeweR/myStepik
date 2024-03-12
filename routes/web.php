@@ -53,4 +53,5 @@ Route::prefix("/surveys")->middleware("auth")->as("surveys.")->group(function ()
     Route::post("/{lesson_id}/store", [SurveyController::class,"store"])->name("store");
 });
 
-Route::post("/options/{lesson_id}/store", [OptionController::class,"store"])->name("options.store");
+Route::post("/options/{survey_id}/store", [OptionController::class,"store"])->name("options.store");
+Route::post("/options/{survey_id}/succes/store", [OptionController::class,"succesStore"])->name("options.succes.store");

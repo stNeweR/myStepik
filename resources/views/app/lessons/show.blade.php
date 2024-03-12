@@ -61,6 +61,19 @@
                                         <x-form-button>Create option!</x-form-button>
                                     </form>
                                 </div>
+                                <div class="my-2">
+                                    <form action="{{ route('options.succes.store', $survey->id) }}" method="post" class="flex flex-col gap-1">
+                                        @csrf
+                                        @method('post')
+                                        <label for="succes_option">Select succes option:</label>
+                                        <select name="succes_option" id="succes_option" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2">
+                                            @foreach ($survey->options as $option)
+                                                <option value="{{ $option->id}}">{{ $option->body }}</option>
+                                            @endforeach
+                                        </select>
+                                        <x-form-button>Select this option!</x-form-button>
+                                    </form>
+                                </div>
                             @endcan
                         </div>
                     @endforeach
