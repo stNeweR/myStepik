@@ -15,7 +15,6 @@ class CourseController extends Controller
     public function show($courseId)
     {
         $course = Course::query()->findOrFail($courseId);
-//        dd($course->is_published);
         if ($course["is_published"] || Gate::allows('isAuthor', $course->id)) {
             $author = $course->user;
             $themes = $course->themes;

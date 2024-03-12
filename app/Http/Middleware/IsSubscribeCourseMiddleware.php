@@ -7,6 +7,7 @@ use App\Models\Lesson;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsSubscribeCourseMiddleware
@@ -18,13 +19,13 @@ class IsSubscribeCourseMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $lessonId = $request->route("id");
+        $lessonId = $request->route("lesson_id");
         $lesson = Lesson::query()->findOrFail($lessonId);
         $theme = $lesson->theme;
         $course = $theme->course;
 
         if ($course && Auth::user()) {
-            if (Auth::user()->subscribeCourse($course->id)) {
+            if (Auth::user()->subscribeCourse($course->id) && Gate::allows("isAuthor", $course->id)) {
                 return $next($request);
             };
             return redirect()->back();

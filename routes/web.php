@@ -5,6 +5,7 @@ use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\Main\CatalogController;
 use App\Http\Controllers\Main\CourseController;
 use App\Http\Controllers\Main\LessonController;
+use App\Http\Controllers\Main\OptionController;
 use App\Http\Controllers\Main\SurveyController;
 use App\Http\Controllers\Main\ThemeController;
 
@@ -35,15 +36,21 @@ Route::prefix("/courses/")->as("courses.")->group(function () {
     });
 });
 
-
-Route::prefix("/lessons/")->middleware("isSubscribe")->middleware("auth")->as("lessons.")->group(function () {
-    Route::get("{id}", [LessonController::class, "show"])->name("show");
-    Route::post("{id}/succes", [LessonController::class, "succes"])->name("succes");
-    Route::delete("{id}/unsuccess", [LessonController::class, "unsuccess"])->name("unsuccess");
-    Route::get("{theme_id}/create", [LessonController::class, "create"])->name("create")->middleware("author");
-    Route::post("{theme_id}/store", [LessonController::class, "store"])->name("store")->middleware("author");
+Route::prefix("/lessons/")->as("lessons.")->group(function () {
+    Route::middleware("isSubscribe")->group(function () {
+        Route::get("{lesson_id}", [LessonController::class, "show"])->name("show");
+        Route::post("{lesson_id}/succes", [LessonController::class, "succes"])->name("succes");
+        Route::delete("{lesson_id}/unsuccess", [LessonController::class, "unsuccess"])->name("unsuccess");
+    });
+    Route::middleware("author")->group(function () {
+        Route::get("{theme_id}/create", [LessonController::class, "create"])->name("create");
+        Route::post("{theme_id}/store", [LessonController::class, "store"])->name("store");
+    });
 });
 
 Route::prefix("/surveys")->middleware("auth")->as("surveys.")->group(function () {
     Route::post("/{id}/", [SurveyController::class, "check"])->name("check");
+    Route::post("/{lesson_id}/store", [SurveyController::class,"store"])->name("store");
 });
+
+Route::post("/options/{lesson_id}/store", [OptionController::class,"store"])->name("options.store");

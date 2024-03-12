@@ -9,6 +9,10 @@ class Survey extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'body', 'lesson_id'
+    ];
+
     public function options()
     {
         return $this->hasMany(Option::class);
