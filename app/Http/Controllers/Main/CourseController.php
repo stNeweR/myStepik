@@ -95,4 +95,16 @@ class CourseController extends Controller
         $course->update($data);
         return redirect()->route("courses.show", $course->id);
     }
+
+    public function find(Request $request)
+    {
+        $searchTerm = $request['search'];
+        $courses = Course::query()->where('user_id', Auth::user()->id)->where("title", "like", '%' . $searchTerm . '%')->get();
+
+        return view("app.user.myCourses", [
+            "courses" => $courses,
+        ]);
+
+//        dd($courses);
+    }
 }

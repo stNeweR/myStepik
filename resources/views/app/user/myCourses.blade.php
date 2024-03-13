@@ -5,11 +5,11 @@
 @endsection
 
 @section("page")
-    <x-container>
+    <x-app.container>
         <x-block>
-            <form action="" method="get">
-                <label for="find">Поиск:</label>
-                <input type="text" id="find" class="bg-transparent border-b border-slate-900 outline-none focus:border-purple-600">
+            <form action="{{ route('myCourse.find') }}" method="get" class="flex items-center">
+                <label for="search">Поиск:</label>
+                <input type="text" id="search" name="search"  class="bg-transparent border-b outline-none py-1 px-2 focus:border-purple-600">
                 <button type="submit">Поиск</button>
             </form>
         </x-block>
@@ -32,5 +32,5 @@
                 </a>
             @endforeach
         </x-block>
-    </x-container>
+    </x-app.container>
 @endsection

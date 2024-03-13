@@ -24,7 +24,6 @@
                 </a>
             @endforeach
         </x-block>
-        {{ $courses->links() }}
     </x-app.container>
 
 @endsection

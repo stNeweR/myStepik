@@ -15,13 +15,15 @@ Route::middleware("auth")->group(function () {
     Route::get("/profile", [UserController::class, "index"])->name("profile");
 });
 
-Route::prefix("/catalog")->as("catalog.")->group(function () {
+Route::prefix("/catalog/")->as("catalog.")->group(function () {
     Route::get("", [CatalogController::class, "index"]);
+    Route::get("find", [CatalogController::class, "find"])->name('find');
 });
 
 Route::middleware("auth")->group(function () {
     Route::get("/course/create", [CourseController::class, "create"])->name("courses.create");
     Route::get("/myCourses", [CourseController::class, "myCourses"])->name("myCourses");
+    Route::get("/myCourses/find", [CourseController::class, 'find'])->name('myCourse.find');
 });
 Route::prefix("/courses/")->as("courses.")->group(function () {
     Route::get("{course_id}", [CourseController::class, "show"])->name("show");
