@@ -25,7 +25,7 @@ class IsSubscribeCourseMiddleware
         $course = $theme->course;
 
         if ($course && Auth::user()) {
-            if (Auth::user()->subscribeCourse($course->id) && Gate::allows("isAuthor", $course->id)) {
+            if (Auth::user()->subscribeCourse($course->id) || Gate::allows("isAuthor", $course->id)) {
                 return $next($request);
             };
             return redirect()->back();

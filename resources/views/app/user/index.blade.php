@@ -27,13 +27,11 @@
                                     <div class="grid grid-cols-4 gap-2">
                                         @foreach ($theme["lessons"] as $lesson)
                                             @if ($myLessons->contains('id', $lesson->id))
-                                                <a href="{{ route("lessons.show", $lesson->id)}}" class="bg-green-800 border rounded flex items-center justify-center px-2 py-1">
+                                                <a href="{{ route("lessons.show", $lesson->id)}}" class="hover:bg-purple-600 transition bg-green-800 rounded flex items-center justify-center px-2 py-1">
                                                     <small class="">{{ $lesson->id }}  {{ $lesson->title}}</small>
                                                 </a>
                                             @else
-                                                <a href="{{ route("lessons.show", $lesson->id)}}" class="border rounded flex items-center justify-center px-2 py-1">
-                                                    <small class="">{{ $lesson->id }} {{ $lesson->title }}</small>
-                                                </a>
+                                                <x-button href="{{ route('lessons.show', $lesson->id)}}"><small>{{ $lesson->id }} {{ $lesson->title }}</small></x-button>
                                             @endif
                                         @endforeach
                                     </div>

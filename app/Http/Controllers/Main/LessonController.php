@@ -17,7 +17,6 @@ class LessonController extends Controller
     {
         $lesson = Lesson::query()->findOrFail($id);
         $surveys = $lesson->surveys;
-
         $theme = $lesson->theme;
         $course = $theme->course;
         $themes = $course->themes;

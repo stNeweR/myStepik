@@ -56,8 +56,8 @@
                                     <form action="{{ route('options.store', $survey->id) }}" method="post" class="flex flex-col gap-1">
                                         @csrf
                                         @method('post')
-                                        <label for="body">Add option Body:</label>
-                                        <input type="text" name="body" id="body" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2">
+                                        <x-form-input name="body" type="text">Add option Body:</x-form-input>
+                                        <x-error error="body"></x-error>
                                         <x-form-button>Create option!</x-form-button>
                                     </form>
                                 </div>
@@ -101,6 +101,7 @@
                         @method('post')
                         <label for="body">Create survey:</label>
                         <textarea name="body" id="body" rows="5" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2"></textarea>
+                        <x-error error="body"></x-error>
                         <x-form-button>Create survey!</x-form-button>
                     </form>
                 </x-block>

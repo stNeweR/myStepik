@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Course;
 use App\Models\Theme;
 use Closure;
 use Illuminate\Support\Facades\Gate;
@@ -17,11 +18,29 @@ class AuthorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $theme = Theme::query()->findOrFail($request->route("theme_id"));
+//        dump($request->route("course_id"));
+//        dd($request->route("theme_id"));
 
-        if (Gate::allows("isAuthor", $theme->course->id)) {
-            return $next($request);
+        if ($request->route("course_id")) {
+            $course = Course::query()->findOrFail($request->route("course_id"));
+            if (Gate::allows("isAuthor", $course->id)) {
+                return $next($request);
+            }
+            abort(404);
+
+        } elseif ($request->route("theme_id")) {
+            $theme = Theme::query()->findOrFail($request->route("theme_id"));
+            if (Gate::allows("isAuthor", $theme->course->id)) {
+                return $next($request);
+            }
+            abort(404);
         }
-        abort(404);
+
+//        $theme = Theme::query()->findOrFail($request->route("course_id"));
+//        dd($course);
+//        if (Gate::allows("isAuthor", $theme->course->id)) {
+//            return $next($request);
+//        }
+//        abort(404);
     }
 }

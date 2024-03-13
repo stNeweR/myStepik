@@ -24,13 +24,15 @@ Route::middleware("auth")->group(function () {
     Route::get("/myCourses", [CourseController::class, "myCourses"])->name("myCourses");
 });
 Route::prefix("/courses/")->as("courses.")->group(function () {
-    Route::get("{id}", [CourseController::class, "show"])->name("show");
+    Route::get("{course_id}", [CourseController::class, "show"])->name("show");
     Route::post("store", [CourseController::class, "store"])->name("store");
-    Route::get("{id}/edit", [CourseController::class, "edit"])->name("edit");
-    Route::put("{id}", [CourseController::class, "update"])->name("update");
-    Route::post("{id}/subscribe", [CourseController::class, "subscribe"])->name("subscribe");
-    Route::delete("{id}/unsubscribe", [CourseController::class, "unSubscribe"])->name("unsubscribe");
-    Route::prefix("{id}/themes/")->as("themes.")->group(function () {
+    Route::middleware("author")->group(function () {
+        Route::get("{course_id}/edit", [CourseController::class, "edit"])->name("edit");
+        Route::put("{course_id}", [CourseController::class, "update"])->name("update");
+    });
+    Route::post("{course_id}/subscribe", [CourseController::class, "subscribe"])->name("subscribe");
+    Route::delete("{course_id}/unsubscribe", [CourseController::class, "unSubscribe"])->name("unsubscribe");
+    Route::prefix("{course_id}/themes/")->middleware("author")->as("themes.")->group(function () {
         Route::get("create", [ThemeController::class, "create"])->name("create");
         Route::post("store", [ThemeController::class, "store"])->name("store");
     });
@@ -48,10 +50,12 @@ Route::prefix("/lessons/")->as("lessons.")->group(function () {
     });
 });
 
-Route::prefix("/surveys")->middleware("auth")->as("surveys.")->group(function () {
-    Route::post("/{id}/", [SurveyController::class, "check"])->name("check");
-    Route::post("/{lesson_id}/store", [SurveyController::class,"store"])->name("store");
+Route::prefix("/surveys/")->as("surveys.")->middleware("auth")->group(function () {
+    Route::post("{lesson_id}/", [SurveyController::class, "check"])->middleware("auth")->name("check");
+    Route::post("{lesson_id}/store", [SurveyController::class,"store"])->name("store");
 });
 
-Route::post("/options/{survey_id}/store", [OptionController::class,"store"])->name("options.store");
-Route::post("/options/{survey_id}/succes/store", [OptionController::class,"succesStore"])->name("options.succes.store");
+Route::prefix("/options/")->as('options.')->group(function () {
+    Route::post("{survey_id}/store", [OptionController::class,"store"])->name("store");
+    Route::post("{survey_id}/success/store", [OptionController::class,"succesStore"])->name("succes.store");
+});

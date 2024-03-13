@@ -45,7 +45,11 @@
                     @foreach($theme->lessons as $lesson)
                         <x-link href="{{ route('lessons.show', $lesson->id) }}">{{ $lesson->title }}</x-link>
                     @endforeach
-                    <x-link href="{{ route('lessons.create', $theme->id) }}">Create lesson</x-link>
+                    @can("isAuthor", $course->id)
+                        <div class="flex">
+                            <x-button href="{{ route('lessons.create', $theme->id) }}">Create lesson</x-button>
+                        </div>
+                    @endcan
                 @endforeach
                 @can("isAuthor", $course->id)
                     <x-button href="{{ route('courses.themes.create', $course->id) }}" class="text-center">Add theme</x-button>
