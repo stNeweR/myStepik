@@ -7,7 +7,7 @@
 @section("page")
     <x-container class="">
         <x-block class="w-1/3 mx-auto my-auto">
-            <form action="{{ route("register.create") }}" method="post" class="flex flex-col gap-3 p-1">
+            <form action="{{ route("register.store") }}" method="post" class="flex flex-col gap-3 p-1">
                 @csrf
                 @method("post")
                 <div class="flex flex-col gap-2">

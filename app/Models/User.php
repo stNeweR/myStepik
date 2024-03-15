@@ -17,7 +17,8 @@ class User extends Authenticatable
         'user_name',
         'email',
         'password',
-        "full_name"
+        "full_name",
+        'description'
     ];
 
     public function courses()

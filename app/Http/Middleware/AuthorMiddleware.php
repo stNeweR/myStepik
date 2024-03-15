@@ -18,9 +18,6 @@ class AuthorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-//        dump($request->route("course_id"));
-//        dd($request->route("theme_id"));
-
         if ($request->route("course_id")) {
             $course = Course::query()->findOrFail($request->route("course_id"));
             if (Gate::allows("isAuthor", $course->id)) {
@@ -35,12 +32,5 @@ class AuthorMiddleware
             }
             abort(404);
         }
-
-//        $theme = Theme::query()->findOrFail($request->route("course_id"));
-//        dd($course);
-//        if (Gate::allows("isAuthor", $theme->course->id)) {
-//            return $next($request);
-//        }
-//        abort(404);
     }
 }
