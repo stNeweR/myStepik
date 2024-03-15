@@ -4,17 +4,14 @@
     <x-container>
         <div class="grid grid-cols-2 gap-4">
             <x-block>
-                <form action="{{ route("admin.lessons.search")}}"  method="post" class="flex flex-col gap-3 mb-2">
-                    @csrf
-                    @method("post")
+                <form action="{{ route("admin.lessons.find")}}"  method="get" class="flex flex-col gap-3 mb-2">
                     <label for="deleted" class="text-xl font-semibold">Удален или нет</label>
                     <select name="deleted" id="deleted" class="bg-slate-600 py-1 px-2 rounded">
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
-                    <label for="searchTerm">Поиск по заголовку:</label>
-                    <input type="text" name="searchTerm" id="searchTerm" class="border-b bg-transparent outline-none">
-                    <button class="bg-purple-600 py-1 rounded" type="submit">Search!</button>
+                    <x-form-input name="body" type="string">Поиск по полю:</x-form-input>
+                    <x-form-button>Find lessons!</x-form-button>
                 </form>
             </x-block>
             <x-block>

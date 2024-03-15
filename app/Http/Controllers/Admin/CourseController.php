@@ -33,17 +33,19 @@ class CourseController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function find(Request $request)
     {
-        $search = $request["searchTerm"];
-        $query = Course::withTrashed()->where("title", "LIKE", "%" . $search . "%");
+        $query = Course::withTrashed()->where("title", "LIKE", "%" . $request['body'] . "%");
         if ($request["deleted"] === "true") {
             $query->whereNotNull("deleted_at");
         } elseif ($request["deleted"] === "false") {
             $query->whereNull("deleted_at");
         }
         $courses = $query->get();
-        return view('admin.courses.search', ["courses" => $courses]);
+        return view('admin.courses.find', [
+            "courses" => $courses,
+            "body" => $request['body'],
+        ]);
     }
 
     public function edit($id)

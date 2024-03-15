@@ -12,6 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
+//        dd("halo!");
         $users = User::withTrashed()->orderBy("created_at", "desc")->paginate(10);
         $usersCount = User::query()->count();
         return view("admin.users.index", [
@@ -46,6 +47,7 @@ class UserController extends Controller
         return view("admin.users.find", [
             "users" => $users,
             "usersCount" => $usersCount,
+            "body" => $data['body']
         ]);
     }
 

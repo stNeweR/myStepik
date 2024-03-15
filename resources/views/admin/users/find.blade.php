@@ -4,9 +4,7 @@
 <x-container class="">
     <div class="grid grid-cols-2 gap-4">
         <div class="bg-slate-800 rounded px-2 py-2">
-            <form action="{{ route("admin.users.find")}}"  method="post" class="flex flex-col gap-3 mb-2">
-                @csrf
-                @method("post")
+            <form action="{{ route("admin.users.find")}}"  method="get" class="flex flex-col gap-3 mb-2">
                 <label for="field" class="text-xl font-semibold">Поиск по:</label>
                 <select class="bg-slate-600 py-1 px-2 rounded" name="field" id="field">
                     <option value="user_name">User_name</option>
@@ -20,9 +18,8 @@
                     <option value="true">Yes</option>
                     <option value="false">No</option>
                 </select>
-                <label for="body">Поиск:</label>
-                <input type="text" name="body" id="body" class="bg-slate-600 py-1 px-2 rounded outline-none">
-                <button class="bg-purple-600 py-1 rounded" type="submit">Find!</button>
+                <x-form-input name="body" type="string" value="{{ $body }}">Поиск по полю:</x-form-input>
+                <x-form-button>Find user!</x-form-button>
             </form>
         </div>
         <div class="bg-slate-800 rounded px-2 py-2">
@@ -34,7 +31,7 @@
     </div>
     <div class="bg-slate-800 rounded px-2 py-2 my-4">
         <table class="w-full text-left mb-2">
-            <thead class=""">
+            <thead class="">
                 <tr class="border-b border-slate-600 ">
                     <th class="py-1" scope="col">USER_NAME</th>
                     <th scope="col">NAME</th>

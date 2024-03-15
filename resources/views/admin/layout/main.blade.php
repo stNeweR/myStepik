@@ -9,10 +9,9 @@
 </head>
 <body class="h-full text-white">
     <x-header></x-header>
-
     <div class="flex mt-14 bg-slate-900 h-full">
         <x-sidebar></x-sidebar>
-        <main class="flex flex-col flex-1">
+        <main class="flex flex-col flex-1 min-h-screen max-h-full">
             @yield("page")
             <x-footer></x-footer>
         </main>

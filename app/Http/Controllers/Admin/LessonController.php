@@ -29,18 +29,18 @@ class LessonController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function find(Request $request)
     {
-        $searchTerm = $request["searchTerm"];
-        $query = Lesson::withTrashed()->where("title", "LIKE", "%" . $searchTerm . "%");
+        $query = Lesson::withTrashed()->where("title", "LIKE", "%" . $request['body'] . "%");
         if ($request["deleted"] === "true") {
             $query->whereNotNull("deleted_at");
         } elseif ($request["deleted"] === "false") {
             $query->whereNull("deleted_at");
         }
         $lessons = $query->get();
-        return view("admin.lessons.search", [
+        return view("admin.lessons.find", [
             "lessons" => $lessons,
+            "body" => $request['body'],
         ]);
     }
 
