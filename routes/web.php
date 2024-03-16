@@ -28,6 +28,9 @@ Route::middleware("auth")->group(function () {
 Route::prefix("/courses/")->as("courses.")->group(function () {
     Route::get("{course_id}", [CourseController::class, "show"])->name("show");
     Route::post("store", [CourseController::class, "store"])->name("store");
+    Route::put("{course_id}/publish", [CourseController::class, 'publish'])->name('publish');
+    Route::put("{course_id}/unpublish", [CourseController::class, "unpublish"])->name('unpublish');
+    Route::delete('{course_id}/delete', [CourseController::class, "delete"])->name("delete");
     Route::middleware("author")->group(function () {
         Route::get("{course_id}/edit", [CourseController::class, "edit"])->name("edit");
         Route::put("{course_id}", [CourseController::class, "update"])->name("update");

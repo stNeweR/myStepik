@@ -25,11 +25,29 @@
                             <form action="{{ route("courses.subscribe", $course->id) }}" method="post">
                                 @csrf
                                 @method("POST")
-                                <button type="submit" class="bg-green-700 py-1 px-2 rounded">Subscribe!</button>
+                                <button type="submit" class="bg-green-600 py-1 px-2 rounded">Subscribe!</button>
                             </form>
                         @endif
                         @can("isAuthor", $course->id)
                             <x-button href="{{ route('courses.edit', $course->id) }}">Edit course info</x-button>
+                            @if($course->is_published)
+                                <form action="{{ route('courses.unpublish', $course->id) }}" method="post">
+                                    @method('put')
+                                    @csrf
+                                    <button class="border border-rose-600 py-1 rounded px-2 hover:bg-rose-600 transition items-center justify-center">Unpublish course!</button>
+                                </form>
+                            @else
+                                <form action="{{ route('courses.publish', $course->id) }}" method="post">
+                                    @method('put')
+                                    @csrf
+                                    <button class="border border-green-600 py-1 rounded px-2 hover:bg-green-600 transition items-center justify-center">Publish course!</button>
+                                </form>
+                            @endif
+                                <form action="{{ route('courses.delete', $course->id) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="border border-rose-600 bg-rose-600 py-1 rounded px-2 hover:bg-transparent transition items-center justify-center">Delete course!</button>
+                                </form>
                         @endcan
                     @else
                         <x-link href="{{ route('login.index')}}">Login!</x-link>

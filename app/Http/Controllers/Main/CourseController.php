@@ -104,7 +104,33 @@ class CourseController extends Controller
         return view("app.user.myCourses", [
             "courses" => $courses,
         ]);
+    }
 
-//        dd($courses);
+    public function publish($courseId)
+    {
+        $course = Course::query()->find($courseId);
+
+        $course['is_published'] = 1;
+
+        $course->save();
+        return redirect()->route('courses.show', $courseId);
+    }
+
+    public function unpublish( $courseId)
+    {
+        $course = Course::query()->find($courseId);
+
+        $course['is_published'] = 0;
+
+        $course->save();
+
+        return redirect()->route("courses.show", $courseId);
+    }
+
+    public function delete($courseId)
+    {
+        Course::query()->find($courseId)->delete();
+
+        return redirect()->route('myCourses');
     }
 }
