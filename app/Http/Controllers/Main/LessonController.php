@@ -64,14 +64,31 @@ class LessonController extends Controller
     public function store(LessonRequest $request, $theme_id)
     {
         $data = $request->validated();
-
         $course_id = Theme::query()->find($theme_id)->course->id;
         Lesson::query()->create([
             "title" => $data["title"],
             "body" => $data['body'],
             'theme_id' => $theme_id,
         ]);
-
         return redirect()->route("courses.show", $course_id);
+    }
+
+    public function edit($lesson_id)
+    {
+        $lesson = Lesson::query()->findOrFail($lesson_id);
+
+        return view('app.courses.lessons.edit', [
+            'lesson' => $lesson
+        ]);
+    }
+
+    public function update(LessonRequest $request, $lesson_id)
+    {
+        $data = $request->validated();
+        $lesson = Lesson::query()->findOrFail($lesson_id);
+
+        $lesson->update($data);
+
+        return redirect()->route('lessons.show', $lesson_id);
     }
 }

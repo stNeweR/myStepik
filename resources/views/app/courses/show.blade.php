@@ -59,7 +59,13 @@
             <div class="flex flex-col gap-1">
                 <h1 class="text-2xl"><b>Темы которые рассматриваются в курсе:</b></h1>
                 @foreach($themes as $theme)
-                    <h2 class="text-lg">{{ $theme->id }}) {{ $theme->title }}</h2>
+                    <div class="flex gap-2">
+                        <h2 class="text-lg">{{ $theme->id }}) {{ $theme->title }}</h2>
+                        @can("isAuthor", $course->id)
+                            <x-link href="{{route('courses.themes.edit', $theme->id)}}">Edit!</x-link>
+                        @endcan
+                    </div>
+
                     @foreach($theme->lessons as $lesson)
                         <x-link href="{{ route('lessons.show', $lesson->id) }}">{{ $lesson->title }}</x-link>
                     @endforeach

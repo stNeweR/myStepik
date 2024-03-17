@@ -30,4 +30,22 @@ class ThemeController extends Controller
         return redirect()->route("courses.show", $id);
     }
 
+    public function edit($theme_id)
+    {
+        $theme = Theme::query()->find($theme_id);
+        return view('app.courses.themes.edit', [
+            'theme' => $theme,
+        ]);
+    }
+
+    public function update(ThemeRequest $request, $theme_id)
+    {
+        $data = $request->validated();
+        $theme = Theme::query()->findOrFail($theme_id);
+        $theme->update($data);
+
+        $course_id = $theme->course->id;
+
+        return redirect()->route('courses.show', $course_id);
+    }
 }

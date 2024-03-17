@@ -78,7 +78,7 @@
                         </div>
                     @endforeach
                 @endif
-                <div class="flex gap-2">
+                <div class="flex gap-2 items-center">
                     @if ($myLessons->contains("id", $lesson->id))
                         <form action="{{ route("lessons.unsuccess", $lesson->id)}}" method="post">
                             @method("delete")
@@ -92,6 +92,7 @@
                             <button class="bg-green-700 py-1 px-2 rounded">Success</button>
                         </form>
                     @endif
+                    <x-link href="{{ route('lessons.edit', $lesson->id) }}">Edit!</x-link>
                 </div>
             </div>
             @can("isAuthor", $course->id)

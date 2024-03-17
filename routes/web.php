@@ -20,6 +20,11 @@ Route::prefix("/catalog/")->as("catalog.")->group(function () {
     Route::get("find", [CatalogController::class, "find"])->name('find');
 });
 
+Route::prefix("/courses/{theme_id}/")->middleware('author')->as("courses.themes.")->group(function () {
+    Route::get("edit", [ThemeController::class, "edit"])->name("edit");
+    Route::put("update", [ThemeController::class, "update"])->name('update');
+});
+
 Route::middleware("auth")->group(function () {
     Route::get("/course/create", [CourseController::class, "create"])->name("courses.create");
     Route::get("/myCourses", [CourseController::class, "myCourses"])->name("myCourses");
@@ -48,6 +53,10 @@ Route::prefix("/lessons/")->as("lessons.")->group(function () {
         Route::get("{lesson_id}", [LessonController::class, "show"])->name("show");
         Route::post("{lesson_id}/succes", [LessonController::class, "succes"])->name("succes");
         Route::delete("{lesson_id}/unsuccess", [LessonController::class, "unsuccess"])->name("unsuccess");
+    });
+    Route::middleware('author')->group(function () {
+        Route::get("{lesson_id}/edit", [LessonController::class, 'edit'])->name("edit");
+        Route::put('{lesson_id}/update', [LessonController::class, 'update'])->name('update');
     });
     Route::middleware("author")->group(function () {
         Route::get("{theme_id}/create", [LessonController::class, "create"])->name("create");

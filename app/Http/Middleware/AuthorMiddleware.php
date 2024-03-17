@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\Theme;
 use Closure;
 use Illuminate\Support\Facades\Gate;
@@ -24,13 +25,20 @@ class AuthorMiddleware
                 return $next($request);
             }
             abort(404);
-
         } elseif ($request->route("theme_id")) {
             $theme = Theme::query()->findOrFail($request->route("theme_id"));
             if (Gate::allows("isAuthor", $theme->course->id)) {
                 return $next($request);
             }
             abort(404);
+        } elseif($request->route('lesson_id')) {
+            $lesson = Lesson::query()->findOrFail($request->route('lesson_id'));
+//            dd($lesson->theme->course->id);
+            if (Gate::allows('isAuthor', $lesson->theme->course->id)) {
+                return $next($request);
+            }
         }
+
+        abort(404);
     }
 }
