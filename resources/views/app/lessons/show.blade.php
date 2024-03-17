@@ -92,7 +92,10 @@
                             <button class="bg-green-700 py-1 px-2 rounded">Success</button>
                         </form>
                     @endif
-                    <x-link href="{{ route('lessons.edit', $lesson->id) }}">Edit!</x-link>
+                    @can('isAuthor', $course->id)
+                        <x-link href="{{ route('lessons.edit', $lesson->id) }}">Edit!</x-link>
+                        <x-app.delete-button href="{{ route('lessons.delete', $lesson->id) }}">Delete lesson!</x-app.delete-button>
+                    @endcan
                 </div>
             </div>
             @can("isAuthor", $course->id)

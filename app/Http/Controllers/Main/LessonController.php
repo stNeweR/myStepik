@@ -91,4 +91,13 @@ class LessonController extends Controller
 
         return redirect()->route('lessons.show', $lesson_id);
     }
+
+    public function delete($lesson_id)
+    {
+        $lesson = Lesson::query()->findOrFail($lesson_id);
+        $course_id = $lesson->theme->course->id;
+        $lesson->delete();
+
+        return redirect()->route('courses.show',$course_id);
+    }
 }

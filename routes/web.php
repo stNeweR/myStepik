@@ -23,6 +23,7 @@ Route::prefix("/catalog/")->as("catalog.")->group(function () {
 Route::prefix("/courses/{theme_id}/")->middleware('author')->as("courses.themes.")->group(function () {
     Route::get("edit", [ThemeController::class, "edit"])->name("edit");
     Route::put("update", [ThemeController::class, "update"])->name('update');
+    Route::delete("delete", [ThemeController::class, 'delete'])->name('delete');
 });
 
 Route::middleware("auth")->group(function () {
@@ -57,6 +58,7 @@ Route::prefix("/lessons/")->as("lessons.")->group(function () {
     Route::middleware('author')->group(function () {
         Route::get("{lesson_id}/edit", [LessonController::class, 'edit'])->name("edit");
         Route::put('{lesson_id}/update', [LessonController::class, 'update'])->name('update');
+        Route::delete('{lesson_id}/delete', [LessonController::class, 'delete'])->name('delete');
     });
     Route::middleware("author")->group(function () {
         Route::get("{theme_id}/create", [LessonController::class, "create"])->name("create");

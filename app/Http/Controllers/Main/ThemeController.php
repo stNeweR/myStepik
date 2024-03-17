@@ -48,4 +48,13 @@ class ThemeController extends Controller
 
         return redirect()->route('courses.show', $course_id);
     }
+
+    public function delete($theme_id)
+    {
+        $course_id = Theme::query()->find($theme_id)->course->id;
+
+        Theme::query()->find($theme_id)->delete();
+
+        return redirect()->route('courses.show', $course_id);
+    }
 }
