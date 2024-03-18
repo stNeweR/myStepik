@@ -25,7 +25,6 @@ class SurveyController extends Controller
         }
         return redirect()->back()->with("message", "Нет, это не правильный ответ: " . $succesOption->body);
     }
-
     public function store(SurveyRequest $request, $lesson_id)
     {
         $data = $request->validated();
@@ -45,4 +44,29 @@ class SurveyController extends Controller
 
         return redirect()->route('lessons.show', $lesson_id);
     }
+
+    public function edit($survey_id)
+    {
+        $survey = Survey::query()->find($survey_id);
+
+        return view('app.courses.surveys.edit', [
+            'survey' => $survey
+        ]);
+    }
+
+    public function update(Request $request, $survey_id)
+    {
+        $survey = Survey::query()->find($survey_id);
+
+        $lesson_id = $survey->lesson->id;
+
+//        dd($survey->lesson);
+
+        $survey->update([
+            'body' => $request['body'],
+        ]);
+
+        return redirect()->route('lessons.show', $lesson_id);
+    }
+
 }

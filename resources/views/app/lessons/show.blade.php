@@ -37,6 +37,7 @@
                                 <p><b>Вопрос:</b> {{ $survey->body }}</p>
                                 @can('isAuthor', $course->id)
                                     <x-app.delete-button href="{{ route('surveys.delete', $survey->id) }}">Delete this survey!</x-app.delete-button>
+                                    <x-link href="{{ route('surveys.edit', $survey->id) }}">Edit survey!</x-link>
                                 @endcan
                             </div>
                             @if (session("message")==="Вы выбрали правильный ответ!")

@@ -70,6 +70,8 @@ Route::prefix("/surveys/")->as("surveys.")->middleware("auth")->group(function (
     Route::post("{lesson_id}/", [SurveyController::class, "check"])->middleware("auth")->name("check");
     Route::post("{lesson_id}/store", [SurveyController::class,"store"])->name("store");
     Route::delete('{survey_id}/delete', [SurveyController::class, 'delete'])->name('delete');
+    Route::get('{survey_id}/edit', [SurveyController::class, 'edit'])->name('edit');
+    Route::put('{survey_id}/update', [SurveyController::class, 'update'])->name('update');
 });
 
 Route::prefix("/options/")->as('options.')->group(function () {
