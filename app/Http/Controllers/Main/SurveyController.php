@@ -15,7 +15,11 @@ class SurveyController extends Controller
         $result = OptionSurvey::query()
             ->where("survey_id", $id)
             ->where("option_id", $request->option_id)->exists();
-        $succesOption = Survey::query()->find($id)->succesOption[0];
+        $succesOption = Survey::query()->find($id)->succesOption;
+        if ($succesOption->isEmpty()) {
+            return redirect()->back()->with("message", "Правильного ответа ещё нет, извините");
+        }
+        $succesOption = $succesOption[0];
         if ($result) {
             return redirect()->back()->with("message", "Вы выбрали правильный ответ!");
         }
@@ -29,6 +33,16 @@ class SurveyController extends Controller
             "body" => $data['body'],
             'lesson_id' => $lesson_id,
         ]);
+        return redirect()->route('lessons.show', $lesson_id);
+    }
+
+    public function delete($survey_id)
+    {
+        $survey = Survey::query()->find($survey_id);
+
+        $lesson_id = $survey->lesson->id;
+        Survey::query()->find($survey_id)->delete();
+
         return redirect()->route('lessons.show', $lesson_id);
     }
 }

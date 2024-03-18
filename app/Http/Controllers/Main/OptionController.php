@@ -22,6 +22,12 @@ class OptionController extends Controller
 
     public function succesStore(Request $request, $survey_id)
     {
+        $option = OptionSurvey::query()->where('survey_id', $survey_id)->first();
+
+        if ($option) {
+            $option->delete();
+        }
+
         OptionSurvey::query()->create([
             'option_id' => $request['succes_option'],
             'survey_id' => $survey_id,

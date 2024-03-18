@@ -22,4 +22,9 @@ class Survey extends Model
     {
         return $this->belongsToMany(Option::class);
     }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
 }

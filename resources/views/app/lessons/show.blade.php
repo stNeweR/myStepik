@@ -33,7 +33,13 @@
                     <h1 class="text-xl mt-4"><b>Вопросы:</b></h1>
                     @foreach($surveys as $survey)
                         <div class="my-2">
-                            <p><b>Вопрос:</b> {{ $survey->body }}</p>
+                            <div class="flex items-center gap-2">
+                                <p><b>Вопрос:</b> {{ $survey->body }}</p>
+                                @can('isAuthor', $course->id)
+                                    <x-app.delete-button href="{{ route('surveys.delete', $survey->id) }}">Delete this survey!</x-app.delete-button>
+                                @endcan
+                            </div>
+
                             @if (session("message")==="Вы выбрали правильный ответ!")
                                 <p class="bg-green-700 inline">{{ session("message") }}</p>
                             @else
