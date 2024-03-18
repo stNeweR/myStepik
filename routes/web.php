@@ -75,4 +75,5 @@ Route::prefix("/surveys/")->as("surveys.")->middleware("auth")->group(function (
 Route::prefix("/options/")->as('options.')->group(function () {
     Route::post("{survey_id}/store", [OptionController::class,"store"])->name("store");
     Route::post("{survey_id}/success/store", [OptionController::class,"succesStore"])->name("succes.store");
+    Route::delete('{lesson_id}/delete', [OptionController::class, 'delete'])->name('delete');
 });

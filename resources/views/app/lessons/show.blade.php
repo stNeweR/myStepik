@@ -39,7 +39,6 @@
                                     <x-app.delete-button href="{{ route('surveys.delete', $survey->id) }}">Delete this survey!</x-app.delete-button>
                                 @endcan
                             </div>
-
                             @if (session("message")==="Вы выбрали правильный ответ!")
                                 <p class="bg-green-700 inline">{{ session("message") }}</p>
                             @else
@@ -83,6 +82,17 @@
                             @endcan
                         </div>
                     @endforeach
+                    <form action="{{ route('options.delete', $lesson->id) }}" method="post" class="my-2">
+                        @csrf
+                        @method('delete')
+                        <label for="delete_option">Select delete option:</label>
+                        <select name="delete_option" id="delete_option" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2">
+                            @foreach ($survey->options as $option)
+                                <option value="{{ $option->id}}">{{ $option->body }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="bg-rose-600 py-1 px-2 border border-rose-600 transition rounded hover:border-rose-600 hover:bg-transparent">Delete option!</button>
+                    </form>
                 @endif
                 <div class="flex gap-2 items-center">
                     @if ($myLessons->contains("id", $lesson->id))
@@ -104,18 +114,20 @@
                     @endcan
                 </div>
             </div>
-            @can("isAuthor", $course->id)
-                <x-block class="mt-4">
-                    <form action="{{ route('surveys.store', $lesson->id)}}" class="flex flex-col gap-1" method="post">
-                        @csrf
-                        @method('post')
-                        <label for="body">Create survey:</label>
-                        <textarea name="body" id="body" rows="5" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2"></textarea>
-                        <x-error error="body"></x-error>
-                        <x-form-button>Create survey!</x-form-button>
-                    </form>
-                </x-block>
-            @endcan
+            @if(count($surveys) === 0)
+                @can("isAuthor", $course->id)
+                    <x-block class="mt-4">
+                        <form action="{{ route('surveys.store', $lesson->id)}}" class="flex flex-col gap-1" method="post">
+                            @csrf
+                            @method('post')
+                            <label for="body">Create survey:</label>
+                            <textarea name="body" id="body" rows="5" class="bg-slate-900 focus:bg-slate-950 outline-none py-1 px-2"></textarea>
+                            <x-error error="body"></x-error>
+                            <x-form-button>Create survey!</x-form-button>
+                        </form>
+                    </x-block>
+                @endcan
+            @endif
         </div>
 
     </div>

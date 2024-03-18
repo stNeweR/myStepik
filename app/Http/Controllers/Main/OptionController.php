@@ -34,4 +34,18 @@ class OptionController extends Controller
         ]);
         return redirect()->route('lessons.show', $survey_id);
     }
+
+    public function delete(Request $request, $lesson_id)
+    {
+        $optionSurvey = OptionSurvey::query()->where('option_id', $request['delete_option'])->first();
+        if ($optionSurvey) {
+            $optionSurvey->delete();
+            Option::query()->find($request['delete_option'])->delete();
+            return redirect()->route('lessons.show', $lesson_id);
+        }
+
+        Option::query()->find($request['delete_option'])->delete();
+
+        return redirect()->route('lessons.show',$lesson_id );
+    }
 }
