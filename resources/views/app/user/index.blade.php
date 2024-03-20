@@ -13,6 +13,7 @@
             <p><b>Full_name: </b>{{ $user->full_name }}</p>
             <p><b>Email: </b>{{ $user->email }}</p>
             <p><b>Profile: </b>{{ $user->description }}</p>
+            <x-link href="{{ route('profile.edit') }}">Edit!</x-link>
         </x-block>
         <x-block>
             <h1 class="text-2xl"><b>Courses:</b></h1>

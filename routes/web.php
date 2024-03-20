@@ -11,8 +11,11 @@ use App\Http\Controllers\Main\ThemeController;
 
 Route::view("/", "app.index")->name("home");
 
-Route::middleware("auth")->group(function () {
-    Route::get("/profile", [UserController::class, "index"])->name("profile");
+Route::middleware("auth")->prefix('/profile/')->as('profile')->group(function () {
+    Route::get("", [UserController::class, "index"])->name("");
+    Route::get('edit', [UserController::class, 'edit'])->name('.edit');
+    Route::put('update', [UserController::class, 'update'])->name('.update');
+
 });
 
 Route::prefix("/catalog/")->as("catalog.")->group(function () {
