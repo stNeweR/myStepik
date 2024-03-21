@@ -26,7 +26,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class)->where("is_published", 1);
     }
 
-    public function subscribeCourse($courseId)
+    public function halo()
+    {
+        dd('halo!');
+    }
+
+    public function subscribeCourse($courseId) : bool
     {
         return $this->courses()->where("course_id", $courseId)->exists();
     }

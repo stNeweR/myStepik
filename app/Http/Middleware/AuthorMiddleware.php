@@ -33,7 +33,6 @@ class AuthorMiddleware
             abort(404);
         } elseif($request->route('lesson_id')) {
             $lesson = Lesson::query()->findOrFail($request->route('lesson_id'));
-//            dd($lesson->theme->course->id);
             if (Gate::allows('isAuthor', $lesson->theme->course->id)) {
                 return $next($request);
             }

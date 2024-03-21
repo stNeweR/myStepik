@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LessonRequest;
 use App\Http\Requests\ThemeRequest;
 use App\Models\Theme;
-use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\LessonUser;
 use Illuminate\Support\Facades\Auth;
